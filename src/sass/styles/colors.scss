@@ -1,0 +1,36 @@
+body,
+.but,
+.clSettings,
+.clMenu,
+footer,
+#subMenuCategories,#subMenuCategories {
+    background-color: $quaternary-color;
+}
+a:hover,
+.but:hover,
+.link-act {
+    color: $tertiary-color;
+}
+
+.but-active {
+    background-color: $primary-color;
+    color: $tertiary-color;
+}
+
+.link-act {
+    color: $tertiary-color;
+}
+
+.links {
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+
+.links:hover,
+.links:focus {
+    background-size: 100% 2px;
+}

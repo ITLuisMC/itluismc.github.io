@@ -1,0 +1,36 @@
+//- resets
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+//- variables
+@import 'variables.scss';
+//- variables
+@import 'mixins.scss';
+//- Animaciones
+@import 'miAnimate.scss';
+
+//-COMPONENTES
+@import 'components/body.scss';
+@import 'components/header.scss';
+@import 'components/footer.scss';
+@import 'components/nav.scss';
+@import 'components/main.scss';
+// @import 'components/section.scss';
+@import 'components/aside.scss';
+// @import 'components/carrousel.scss';
+@import 'components/home.scss';
+
+//- Media Queries
+@import 'styles/typography.scss';
+//- Layouts begin
+//- Layouts mobile-first begin!!s
+@import 'layout/layout.scss';
+//- Styles begins
+@import 'styles/styles.scss';
+//- Media Queries
+@import 'mediaQueries.scss';

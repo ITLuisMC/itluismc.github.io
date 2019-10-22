@@ -1,0 +1,24 @@
+main.main.animated.fadeIn.delay-1s
+    section
+        article.article
+            h2= titlePage
+            br
+            p Si quieres saber más sobre mi, conocerme, hablar sobre algún proyecto o tomar unas beers, abajo están las redes en las que me podrás encontrar o si lo prefieres envíame un mensaje.
+
+        article.content-row.art-social
+            div
+                h3.text-center Form
+                form.content-col(method="POST",action="https://formspree.io/contacto@luismc.es")
+                    input(type="email",name="email",placeholder="Tú email",required)
+                    textarea(name="message",placeholder="mensaje",maxlength="140",required)
+                    button.but-pointer(type="submit") enviar
+            div
+                h3.text-center Social
+                br
+                ul.lists.text-center.content-row
+                    li
+                        a(href="https://www.linkedin.com/in/itluismc",target="blank")
+                            i.fab.fa-linkedin-in
+                    li
+                        a(href="https://github.com/ITLuisMC",target="blank")
+                            i.fab.fa-github

@@ -1,0 +1,42 @@
+ul#miGas.row.lists
+
+    if page=="Home"
+        li(itemscope,itemtype="https://schema.org/breadcrumb") #{'· '}
+            span(itemprop="title")
+                a.links.link-act(href=""+ruta+"",itemprop=url,title=page)= page
+
+    //- else if type=="skill" || type=="article" || type=="project"
+    //-     li(itemscope,itemtype="https://schema.org/breadcrumb") #{'· '}
+    //-         span(itemprop="title")
+    //-             a.links(href="../home.html",itemprop=url,title="Home") Home
+
+    //-     li(itemscope,itemtype="https://schema.org/breadcrumb")
+    //-         span(itemprop="title") #{'>'}
+
+    //-     li(itemscope,itemtype="https://schema.org/breadcrumb")
+    //-         if type=="skill"
+    //-             span(itemprop="title")
+    //-                 a.links(href="/home.html",itemprop=url,title=page+"s")= subFolder
+    //-         else
+    //-             span(itemprop="title")
+    //-                 a.links(href="/"+subFolder+".html",itemprop=url,title=page+"s")= subFolder
+
+    //-     li(itemscope,itemtype="https://schema.org/breadcrumb")
+    //-         span(itemprop="title") #{'>'}
+
+    //-     li(itemscope,itemtype="https://schema.org/breadcrumb")
+    //-         span(itemprop="title")
+    //-             a.links.link-act(href=""+ruta+"",itemprop=url,title=page)= page
+
+
+    else
+        li(itemscope,itemtype="https://schema.org/breadcrumb") #{'· '}
+            span(itemprop="title")
+                a.links(href="../home.html",itemprop=url,title="Home") Home
+
+        li(itemscope,itemtype="https://schema.org/breadcrumb")
+            span(itemprop="title") #{'>'}
+
+        li(itemscope,itemtype="https://schema.org/breadcrumb")
+            span(itemprop="title")
+                a.links.link-act(href=""+ruta+"",itemprop=url,title=page)= page

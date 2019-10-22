@@ -1,0 +1,15 @@
+aside
+    if page=="Articles"
+        ul#listAside.content-row-center.lists.text-center
+
+            li
+                button.but.butAside latest-arts
+            li
+                button.but.butAside(data="categories") categories
+        ul#subMenuCategories.list-buts
+    else if page=="Projects"
+        ul#listAside.content-row-center.lists.text-center
+            li
+                button.but.butAside web
+            li
+                button.but.butAside.but-active All

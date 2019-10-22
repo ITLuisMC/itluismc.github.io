@@ -1,0 +1,30 @@
+- var pages = ["home","about","articles","projects","contact"];
+
+if page=='Home'
+    header.fixed-top.animated.fadeIn.delay-2s
+        article
+            h2= titlePage
+            div.text-right
+                h2
+                    a.links(href="/about.html",title="About")= authorWeb
+                span#sProfile Developer
+else
+    header
+        article
+            nav
+                h2= titlePage
+                ul#ulNavNoRes.row.lists.text-right
+                    each val in pages
+                        li
+                            if ruta=="/"+val+".html" || subFolder==val
+                                span
+                                    a.links.link-act(href="/"+val+".html")=val
+                            else
+                                span
+                                    a.links(href="/"+val+".html")=val
+            div.text-right
+                h2
+                    a.links(href="/about.html",title="About")= authorWeb
+                span#sProfile Developer
+
+        include ../breadcrumbs/breadcrumbs.pug

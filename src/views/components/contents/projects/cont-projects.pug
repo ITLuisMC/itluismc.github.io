@@ -1,0 +1,42 @@
+- var listUno = ["template-skills"];
+- var listDos = ["project01","project04","project05","project06","project07"];
+- var listTres = ["project08","project09"];
+- var listprojects = ["project01","project02","project03","project04","project05","project06","project07","project08","project09"];
+- var textTempSkills = "Sencillo tema html, que sirve de base para esta misma web."
+- var techTempSkills = ["html5","css3","js","pug","sass","gulp","github","gitkraken"]
+//- Recordar que para añadir projectos a la lista el id de la lista debe coincidir con el boton correspondiente del aside.
+main.main.animated.fadeIn.delay-1s
+    section
+        article.projects
+            article#web.lists.article.articles
+                h2.text-center Proyectos Web
+                each val in listUno
+                    article.art-projects(data='listUno')
+                        h3= val
+                        p= textTempSkills
+                        //- br
+                        article
+                            h4 Tools
+                            each val in techTempSkills
+                                span
+                                    //-DESCOMENTAR CUANDO CONTENIDO SKILLS COMPLETADO
+                                    //- if val=="gitkraken"
+                                    //-     a.links(href="/skills/"+val+".html",title=val) #{val}
+                                    //-     |.
+                                    //- else
+                                    //-     a.links(href="/skills/"+val+".html",title=val) #{val}
+                                    //-     |,
+                                    //-     | 
+                                    //-MIENTRAS NO SKILLS COMPLETADOS
+                                    if val=="gitkraken"
+                                        a(title='proximamente..') #{val}
+                                        |.
+                                    else
+                                        a(title='proximamente..') #{val}
+                                        |,
+                                        | 
+                        article.text-center
+                            p
+                                span.text-center
+                                    a(href="https://github.com/ITLuisMC/template-skills", target="blank", title="repositorio")
+                                        i.fab.fa-github

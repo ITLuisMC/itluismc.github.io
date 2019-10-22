@@ -1,0 +1,104 @@
+.nav-responsive {
+    align-content: center;
+    align-items: flex-end;
+    background-color: $quaternary-color;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    ul {
+        text-transform: capitalize;
+    }
+    article {
+        margin: 4px;
+    }
+    #settings {
+        padding: 0.7em;
+    }
+}
+
+#ulNavNoRes{
+    display: none;
+}
+
+.nav-bottom {
+    bottom: 0;
+    position: fixed;
+    z-index: 2000;
+}
+
+.nav-medium {
+    position: fixed;
+    bottom: 50%;
+    z-index: 2000;
+}
+.nav-left{
+    left: 0;
+}
+.nav-left{
+    right: 0;
+}
+
+.spanNav {
+    cursor: pointer;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+}
+
+.clMenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 5000;
+    article {
+        text-transform: capitalize;
+        display: flex;
+        flex-direction: column;
+        span {
+            align-self: end;
+            i {
+                font-size: 32px;
+            }
+        }
+        ul {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    
+}
+
+/* #menu{
+    display: none;
+} */
+/* #settings {
+    display: none;
+} */
+
+.order1 {
+    order: 1;
+}
+
+.order2 {
+    align-items: flex-end;
+    order: 2;
+}
+
+.order3 {
+    order: 3;
+}
+
+.clRight {
+    right:0;
+}
+
+.clLeft {
+    left:0;
+}

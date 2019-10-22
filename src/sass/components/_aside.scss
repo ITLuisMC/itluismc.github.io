@@ -1,0 +1,20 @@
+aside {
+    width: 100%;
+}
+
+#listAside {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#subMenuCategories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.clHidden {
+    visibility: hidden;
+}

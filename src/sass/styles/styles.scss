@@ -1,0 +1,98 @@
+@import 'colors.scss';
+//-MARGINS
+@import 'margins.scss';
+//- PADDINGS
+@import 'paddings.scss';
+.lists,
+.list-buts {
+    list-style: none;
+}
+.lists-cat {
+    padding-left: 0.8em;
+}
+a:link {
+    text-decoration: none;
+}
+.but {
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.clOculto{
+    display: none !important;
+}
+.clSettLeft {
+    border-top-right-radius: 50%;
+    left: 0;
+    padding: 0.7em;
+}
+.clSettRight {
+    border-top-left-radius: 50%;
+    right: 0;
+}
+.clMenuRight {
+    border-top-left-radius: 50%;
+    right: 0;
+}
+.clMenuLeft {
+    border-top-right-radius: 50%;
+    left: 0;
+}
+.img-perfil {
+    border: 1px solid $primary-color;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    max-width: 100px;
+    padding: 5px;
+    width: auto;
+}
+.img-left {
+    float: left;
+    margin-right: 1em;
+    max-width: 100%;
+    width: auto;
+}
+.img-right {
+    float: right;
+    margin-left: 1em;
+    max-width: 100%;
+    width: auto;
+}
+.img-center {
+    align-items: center;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    max-width: 100%;
+}
+.img-art-left {
+    float: left;
+    margin-bottom: 1em;
+    margin-right: 1em;
+    max-width: 100%;
+    width: auto;
+}
+.img-art-right {
+    float: right;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    max-width: 100%;
+    width: auto;
+}
+.img-art-center {
+    align-items: center;
+    margin-bottom: 1em;
+    max-width: 100%;
+}
+.clear {
+    clear: both;
+}
+.clBreadcrumbs,
+.projects ul li article h3 {
+    text-transform: capitalize;
+}
+#subMenuCategories {
+    border-top-left-radius: 14%;
+    border-top-right-radius: 14%;
+    border-bottom-left-radius: 14%;
+    border-bottom-right-radius: 14%;
+}
