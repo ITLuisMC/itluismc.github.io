@@ -1,0 +1,21 @@
+.carousel-indicators {
+    bottom: 0;
+    position: relative;
+    right: 0;
+}
+
+.carousel-indicators li {
+    background-color: #1e1e1e;
+    ;
+}
+
+.carousel-indicators .active {
+    background-color: #dc3545;
+}
+
+pre {
+    border: 1px black solid;
+    padding: 1em;
+    background-color: #212529;
+    color: #17a2b8;
+}
