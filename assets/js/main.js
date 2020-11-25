@@ -1,3 +1,13 @@
+//- año
+function updateDate() {
+    var date = new Date();
+    var anio = date.getFullYear();
+    var spanD = document.getElementById('spanDate');
+    spanD.innerHTML = anio;
+}
+
+updateDate();
+
 //--CODIGO DEL TEMA
 (function ($) {
 	"use strict";
