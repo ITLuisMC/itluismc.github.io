@@ -1,14 +1,41 @@
 //- año
 function updateDate() {
-    var date = new Date();
-    var anio = date.getFullYear();
-    var spanD = document.getElementById('spanDate');
-    spanD.innerHTML = anio;
+	var date = new Date();
+	var anio = date.getFullYear();
+	var spanD = document.getElementById('spanDate');
+	spanD.innerHTML = anio;
+}
+updateDate();
+//- repos
+function apiGetBlog(loquequiero) {
+	var req = new XMLHttpRequest();
+	var url = loquequiero;
+	return new Promise(function (resolve, rejection) {
+		req.open('GET', url, true);
+		req.send(null);
+		req.onreadystatechange = function () {
+			if (req.readyState == 4) {
+				if (req.status == 200) {
+					var respuesta = JSON.parse(req.responseText);
+					resolve(respuesta);
+					// resolve(console.log(respuesta.public_repos));
+				} else {
+					rejection(console.log("Error loading page\n"));
+				}
+			}
+		};
+	});
+}
+//- peticion repositorios publicos de mi github
+if (window.location.pathname == '/') {
+	apiGetBlog('https://api.github.com/users/itluismc')
+		.then((resultado) => {
+			var objetivo = document.getElementById('repos');
+			let numero = resultado.public_repos;
+			objetivo.innerHTML = numero;
+		})
 }
 
-updateDate();
-
-//--CODIGO DEL TEMA
 (function ($) {
 	"use strict";
 	var nav = $('nav');
