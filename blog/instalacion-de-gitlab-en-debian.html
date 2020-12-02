@@ -2,12 +2,12 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>LuisMC | Presentación de esta Web</title>
+    <title>LuisMC | Instalación de GitLab CE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Luis Martínez">
     <meta name="copyright" content="Propietario del copyright">
-    <meta name="keywords" content="bootstrap,css3,Debian,Desarrollo,docker,GNU-Linux,gulp,html,javascript,nodejs,pug">
-    <meta name="description" content="Presentación de esta web como proyecto profesional y personal.">
+    <meta name="keywords" content="Automatización,Desarrollo,DevOps,docker,Proxmox,Sistemas">
+    <meta name="description" content="Articulo sobre las diferentes formas de instalacion de GitLab CE.">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
     <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Inicio</a></li>
               <li class="breadcrumb-item active"><a href="/blog/instalacion-de-gitlab-en-debian">Blog</a></li>
-              <li class="breadcrumb-item active">Presentación de esta Web</li>
+              <li class="breadcrumb-item active">Instalación de GitLab CE</li>
             </ol>
           </div>
         </div>
@@ -53,89 +53,127 @@
         <div class="row">
           <div class="col-md-8">
             <div class="post-box">
-              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/presentacion-de-esta-web.png" alt=""></div>
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/instalacion-de-gitlab-en-debian.png" alt=""></div>
               <div class="post-meta">
-                <h1 class="article-title">Presentación de esta Web</h1>
+                <h1 class="article-title">Instalación de GitLab CE</h1>
                 <ul>
                   <li><span class="ion-ios-person"></span> <a href="/">Luis Martínez</a></li>
-                  <li> <span>26 de Noviembre del 2020</span></li>
+                  <li> <span>02 de Diciembre del 2020</span></li>
                 </ul>
               </div>
               <div class="article-content">
-<p>Saludos y bienvenidos a mi web. Me alegra que hayas llegado aquí y espero disfrutes y valores positivamente su contenido.</p>
+<p>Últimamente estoy desarrollando mi propio flujo de trabajo. Y aunque aún me falta, quisiera integrarlo en un ambiente DevOps con GitLab CE en mi servidor de trabajo.</p>
 
 
 
-<p>Este es un proyecto muy personal y lejos de llegar a ser perfecto al igual que un servidor, su objetivo es mostrar lo que hago y me gusta.</p>
+<p>GitLab parece que aparte de ser un lugar donde guardar y compartir tus repositorios también es una completa plataforma DevOps. Pudiendo crear tus propios Docker en ella, montar un registry, tareas para runners y desplegar tus apps y un largo etc.</p>
 
 
 
-<p>Pese a su sencillez desde la pantalla de tu dispositivo tiene más trabajo del que aparenta. Al igual que las personas y citando a shrek &#8216;es como las cebollas&#8217; hay capas.</p>
+<p>Por lo que en un futuro articulo me enfocare en la experiencia final, de como se integra todo y si realmente es lo que busco para automatizar lo automatizable.</p>
 
 
 
-<p>El diseño web corre a cargo de un tema html free, el cual es el que he usado como plantilla. En el footer he mantenido su copyright por si te interesa, por respeto al autor y por principios.</p>
+<p>Mientras tanto, escribiré aquí como se realiza una instalación con certificados autofirmados en debian 10 y también lo propio usando Docker.</p>
 
 
 
-<p>El tema se llama DevFolio, si lo buscas obviamente encontraras diferencias, pero de ahi salio este diseño. </p>
+<p>No es muy complicado, realmente cada vez facilitan más la tarea. Por lo que siguiendo los pasos indicados en la documentación oficial, comenzaremos por instalar dependencias necesarias:</p>
 
 
 
-<p>Todas las etiquetas de este artículo, asi como los que le sigan, son las tecnologías o hard skills utilizadas.</p>
+<pre class="wp-block-code"><code>apt install -y curl openssh-server ca-certificates postfix easy-rsa</code></pre>
 
 
 
-<p>Según vaya escribiendo artículos, mi perfil, hard skills y servicios&nbsp; relacionados en mi landing page cambiaran. Y lo harán dependiendo sobre lo que más escriba.</p>
+<p>Y también sus repositorios:</p>
 
 
 
-<p>La lógica utilizada en la valoración de mi experiencia es que cada hard skill, pertenece a uno o varios perfiles y tiene un numero de artículos relacionados en los que se ha utilizado(experiencia). Por lo que a más artículos relacionados más experiencia.</p>
+<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash</code></pre>
 
 
 
-<p>En cuanto al backend, utilizo la API de una instalación de wordpress en un&nbsp;servidor de mi lan.</p>
+<p id="block-0cb09119-e69f-4823-a97b-4c29640ba5f3">Si quisiéramos una instalación con certificados automáticos de Let&#8217;s Encrypt, ejecutaríamos el siguiente comando teniendo en cuenta de que el servidor entonces tendrá que estar accesible desde internet:</p>
 
 
 
-<p>Este wordpress lo utilizo para crear y organizar los artículos y categorías&nbsp;de esta web.</p>
+<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>EXTERNAL_URL="https://gitlab.example.com" apt install gitlab-ce</code></pre>
 
 
 
-<p>Para integrarlo todo desarrolle una aplicación con nodejs.</p>
+<p>Si no y queremos configurar unos certificados autofirmados, tan solo ejecutamos:</p>
 
 
 
-<p>Está se encarga de acceder a la API, procesar la info y generar los ficheros pug con los que compilar finalmente el html.</p>
+<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>apt install gitlab-ce</code></pre>
 
 
 
-<p>Esta web evolucionara, se adaptara y crecera mientras la alimente, presentandome digitalmente en cierta medida como profesional y persona.</p>
+<p>Para la configuración manual crearemos su directorio, generaremos unos certificados nuevos y le daremos los permisos adecuados:</p>
 
 
 
-<p>El primer proyecto esta hecho, ahora solo queda no pararse y continuar que hay mucho por aprender.</p>
+<pre id="block-0cb09119-e69f-4823-a97b-4c29640ba5f3" class="wp-block-code"><code>mkdir -p /etc/gitlab/ssl &amp;&amp; cd /etc/gitlab/ssl/</code></pre>
 
 
 
-<p>Saludos y gracias si has llegado hasta aquí.</p>
+<pre id="block-d788d11d-e349-46e4-aedf-7c439d561dad" class="wp-block-code"><code>openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 -keyout gitlab.example.com.key -out gitlab.example.com.crt</code></pre>
+
+
+
+<pre id="block-f2016306-82ca-41bb-af38-27425ba9f11d" class="wp-block-code"><code>chmod 755 /etc/gitlab/ssl</code></pre>
+
+
+
+<p>Editaremos el fichero de configuración indicándole el fqdn del servidor:</p>
+
+
+
+<pre id="block-e4c6fd86-d350-4415-8c47-57bec5c77d6c" class="wp-block-code"><code>nano /etc/gitlab/gitlab.rb</code></pre>
+
+
+
+<p>Buscando la linea siguiente y dejándola de la siguiente manera:</p>
+
+
+
+<pre id="block-29c88920-4251-45b1-b7d2-a1e77cffee85" class="wp-block-code"><code># note the 'https' belowexternal_url "https://gitlab.example.com"</code></pre>
+
+
+
+<p>Por último ya solo falta ejecutar la configuración del Gitlab para que lo configure y levante finalmente:</p>
+
+
+
+<pre id="block-edfbc14b-a8bf-4291-97a6-2e1e343f7251" class="wp-block-code"><code>gitlab-ctl reconfigure</code></pre>
+
+
+
+<p>Cuando termine si todo salio bien nos indicara que ya está disponible y que la primera visita a la url seteara el password root de la instancia.</p>
+
+
+
+<p>En cuanto a su instalación como contenedor Docker, aún más sencillo:</p>
+
+
+
+<pre class="wp-block-code"><code>docker run --detach --hostname gitlab.example.com --env GITLAB_OMNIBUS_CONFIG="external_url 'http://gitlab.example.com'; gitlab_rails&#91;'lfs_enabled'] = true;" --publish 443:443 --publish 80:80 --publish 222:22 --name migitlab --restart always --volume /ruta/guardar/config:/etc/gitlab --volume me /ruta/guardar/logs:/var/log/gitlab --volume me /ruta/guardar/data:/var/opt/gitlab gitlab/gitlab-ce:latest</code></pre>
+
+
+
+<p>Para más info pelearse con su documentación en <a href="https://docs.gitlab.com/omnibus/README.html">Docs-GitLab</a> y en <a href="https://hub.docker.com/r/gitlab/gitlab-ce/">docker-hub</a>. Por lo demás veremos que tal es GitLab y si hay amor.</p>
+
+
+
+<p>Saludosss.</p>
 </div>
               <div class="post-meta">
                 <ul>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/bootstrap">Bootstrap</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/css">CSS</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/dev-ops">DevOps</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/tags/docker-ce">Docker CE</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/git">Git</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/github">GitHub</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gitkraken">GitKraken</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gitlab-ce">GitLab CE</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/tags/gnu-linux">Gnu/Linux</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gulp">Gulp</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/html">HTML</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/javascript">Javascript</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/nginx">Nginx</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/nodejs">NodeJS</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/pugjs">PugJS</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/wordpress">Wordpress</a></li>
                 </ul>
               </div>
             </div>
