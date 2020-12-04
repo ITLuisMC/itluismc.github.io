@@ -2,12 +2,13 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>LuisMC | Presentación de esta Web</title>
+    <title>LuisMC | Instalación de Proxmox VE sobre Debian Buster</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Luis Martínez">
     <meta name="copyright" content="Propietario del copyright">
-    <meta name="keywords" content="bootstrap,css3,Debian,Desarrollo,docker,GNU-Linux,gulp,html,javascript,nodejs,pug">
-    <meta name="description" content="Presentación de esta web como proyecto profesional y personal.">
+    <meta name="keywords" content="Debian,Proxmox,servidor,Sistemas,virtualizacion">
+    <meta name="description" content="Articulo sobre la instalación de Proxmox VE, un entorno de virtualización
+opensource.">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
     <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +43,7 @@
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Inicio</a></li>
               <li class="breadcrumb-item active"><a href="/blog/instalacion-de-proxmox-ve-sobre-debian-buster">Blog</a></li>
-              <li class="breadcrumb-item active">Presentación de esta Web</li>
+              <li class="breadcrumb-item active">Instalación de Proxmox VE sobre Debian Buster</li>
             </ol>
           </div>
         </div>
@@ -53,89 +54,147 @@
         <div class="row">
           <div class="col-md-8">
             <div class="post-box">
-              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/presentacion-de-esta-web.png" alt=""></div>
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/instalacion-de-proxmox-ve-sobre-debian-buster.png" alt=""></div>
               <div class="post-meta">
-                <h1 class="article-title">Presentación de esta Web</h1>
+                <h1 class="article-title">Instalación de Proxmox VE sobre Debian Buster</h1>
                 <ul>
                   <li><span class="ion-ios-person"></span> <a href="/">Luis Martínez</a></li>
-                  <li> <span>26 de Noviembre del 2020</span></li>
+                  <li> <span>04 de Diciembre del 2020</span></li>
                 </ul>
               </div>
               <div class="article-content">
-<p>Saludos y bienvenidos a mi web. Me alegra que hayas llegado aquí y espero disfrutes y valores positivamente su contenido.</p>
+<p>La instalación es muy sencilla, típica de distribuciones basadas en Debian. Las únicas decisiones técnicas importantes son:</p>
 
 
 
-<p>Este es un proyecto muy personal y lejos de llegar a ser perfecto al igual que un servidor, su objetivo es mostrar lo que hago y me gusta.</p>
+<ul><li>Particionado, que dependerá de la configuración deseada de cada cual.</li><li>Instalación o no junto a otro sistema operativo.</li></ul>
 
 
 
-<p>Pese a su sencillez desde la pantalla de tu dispositivo tiene más trabajo del que aparenta. Al igual que las personas y citando a shrek &#8216;es como las cebollas&#8217; hay capas.</p>
+<p>En el último caso particularmente, es mejor realizar la instalación desde un Debian limpio.</p>
 
 
 
-<p>El diseño web corre a cargo de un tema html free, el cual es el que he usado como plantilla. En el footer he mantenido su copyright por si te interesa, por respeto al autor y por principios.</p>
+<p>Esto es debido a que la instalación desde la ISO oficial no lo facilita ya que su enfoque es el de ser el único S.O del equipo.</p>
 
 
 
-<p>El tema se llama DevFolio, si lo buscas obviamente encontraras diferencias, pero de ahi salio este diseño. </p>
+<p>La instalación en principio configuraría grub para poder seleccionar a discreción.</p>
 
 
 
-<p>Todas las etiquetas de este artículo, asi como los que le sigan, son las tecnologías o hard skills utilizadas.</p>
+<p>Así que si planeas instalarlo de esa manera, realiza una instalación previa de Debian junto con por ejemplo, Windows. Haz lo que sigue.</p>
 
 
 
-<p>Según vaya escribiendo artículos, mi perfil, hard skills y servicios&nbsp; relacionados en mi landing page cambiaran. Y lo harán dependiendo sobre lo que más escriba.</p>
+<p>Siguiendo la documentación, configuramos hostname correctamente para que sea resuelto. Editando /etc/hosts y dejándolo por ejemplo así:</p>
 
 
 
-<p>La lógica utilizada en la valoración de mi experiencia es que cada hard skill, pertenece a uno o varios perfiles y tiene un numero de artículos relacionados en los que se ha utilizado(experiencia). Por lo que a más artículos relacionados más experiencia.</p>
+<pre class="wp-block-code"><code>127.0.0.1 localhost.localdomain localhost
+192.168.1.100 pve.example.com pve
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts</code></pre>
 
 
 
-<p>En cuanto al backend, utilizo la API de una instalación de wordpress en un&nbsp;servidor de mi lan.</p>
+<p>Tampoco hay que olvidar establecer ip estatica sino se ha hecho ya, editando &#8216;/etc/network/interfaces&#8217;, ejemplo:</p>
 
 
 
-<p>Este wordpress lo utilizo para crear y organizar los artículos y categorías&nbsp;de esta web.</p>
+<pre class="wp-block-code"><code># This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+# allow-hotplug eth0
+# iface eth0 inet dhcp
+
+# Static IP address
+auto eth0
+iface eth0 inet static
+        address 192.168.1.100
+        netmask 255.255.255.0
+        network 192.168.1.0
+        broadcast 192.168.1.255
+        gateway 192.168.1.1</code></pre>
 
 
 
-<p>Para integrarlo todo desarrolle una aplicación con nodejs.</p>
+<p>Añadimos el repositorio al source.list:</p>
 
 
 
-<p>Está se encarga de acceder a la API, procesar la info y generar los ficheros pug con los que compilar finalmente el html.</p>
+<pre class="wp-block-code"><code>echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" > /etc/apt/sources.list.d/pve-install-repo.list</code></pre>
 
 
 
-<p>Esta web evolucionara, se adaptara y crecera mientras la alimente, presentandome digitalmente en cierta medida como profesional y persona.</p>
+<p>Y también su key:</p>
 
 
 
-<p>El primer proyecto esta hecho, ahora solo queda no pararse y continuar que hay mucho por aprender.</p>
+<pre class="wp-block-code"><code>wget http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg</code></pre>
 
 
 
-<p>Saludos y gracias si has llegado hasta aquí.</p>
+<p>Actualizamos el sistema e instalamos:</p>
+
+
+
+<pre class="wp-block-code"><code>apt update &amp;&amp; apt full-upgrade</code></pre>
+
+
+
+<pre class="wp-block-code"><code>apt install proxmox-ve postfix open-iscsi</code></pre>
+
+
+
+<p>Y respondemos según necesidades aunque sino estás seguro con las respuestas responde no y local. Cuando termine reiniciamos.</p>
+
+
+
+<p>Nos quedaría conectarnos al administrador web en el puerto 8006 y revisar la configuración de red, donde deberemos crear un Linux Bridge y reiniciar el sistema o las interface de red.</p>
+
+
+
+<p>Opcionalmente se nos recomienda desinstalar os-prober si no se va instalar junto a otro sistema.</p>
+
+
+
+<pre class="wp-block-code"><code>apt remove os-prover</code></pre>
+
+
+
+<p> y los kernel de debian.</p>
+
+
+
+<pre class="wp-block-code"><code>apt remove linux-image-amd64 'linux-image-4.19*'</code></pre>
+
+
+
+<pre class="wp-block-code"><code>update-grub</code></pre>
+
+
+
+<p>Una vez dentro, si actualizamos el sistema, lanzara errores debido a que intentara actualizarse contra el repositorio de suscripción. Por lo que si no se dispone de suscripción sera mejor no habilitarlos renombrando/eliminando el repositorio de la ubicación &#8216;/etc/apt/sources.d/&#8217;.</p>
+
+
+
+<p>Continuara&#8230;</p>
 </div>
               <div class="post-meta">
                 <ul>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/bootstrap">Bootstrap</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/css">CSS</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/tags/debian-gnu-linux">Debian GNU/Linux</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/docker-ce">Docker CE</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/git">Git</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/github">GitHub</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gitkraken">GitKraken</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gulp">Gulp</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/html">HTML</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/javascript">Javascript</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/nginx">Nginx</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/nodejs">NodeJS</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/pugjs">PugJS</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/wordpress">Wordpress</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/proxmox">Proxmox VE</a></li>
                 </ul>
               </div>
             </div>
