@@ -2,13 +2,13 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>LuisMC | Instalación de Proxmox VE sobre Debian Buster</title>
+    <title>LuisMC | Primeros pasos en Gitlab: Configuración ssh y keys rsa y gpg</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Luis Martínez">
     <meta name="copyright" content="Propietario del copyright">
-    <meta name="keywords" content="Debian,Proxmox,servidor,Sistemas,virtualizacion">
-    <meta name="description" content="Articulo sobre la instalación de Proxmox VE, un entorno de virtualización
-opensource.">
+    <meta name="keywords" content="Debian,Desarrollo,DevOps,GNU-Linux">
+    <meta name="description" content="Articulo sobre la configuración basica de gitlab para trabajar mediante
+certificados ssh y firmar tus commits">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
     <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@ opensource.">
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Inicio</a></li>
               <li class="breadcrumb-item active"><a href="/blog/primeros-pasos-en-gitlab-configuracion-ssh-y-keys-rsa-y-gpg">Blog</a></li>
-              <li class="breadcrumb-item active">Instalación de Proxmox VE sobre Debian Buster</li>
+              <li class="breadcrumb-item active">Primeros pasos en Gitlab: Configuración ssh y keys rsa y gpg</li>
             </ol>
           </div>
         </div>
@@ -54,147 +54,182 @@ opensource.">
         <div class="row">
           <div class="col-md-8">
             <div class="post-box">
-              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/instalacion-de-proxmox-ve-sobre-debian-buster.png" alt=""></div>
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/primeros-pasos-en-gitlab-configuracion-ssh-y-keys-rsa-y-gpg.png" alt=""></div>
               <div class="post-meta">
-                <h1 class="article-title">Instalación de Proxmox VE sobre Debian Buster</h1>
+                <h1 class="article-title">Primeros pasos en Gitlab: Configuración ssh y keys rsa y gpg</h1>
                 <ul>
                   <li><span class="ion-ios-person"></span> <a href="/">Luis Martínez</a></li>
-                  <li> <span>04 de Diciembre del 2020</span></li>
+                  <li> <span>08 de Diciembre del 2020</span></li>
                 </ul>
               </div>
               <div class="article-content">
-<p>La instalación es muy sencilla, típica de distribuciones basadas en Debian. Las únicas decisiones técnicas importantes son:</p>
+<p>Habiendo dado de alta nuestro usuario, tanto en una instancia local de Gitlab como en gitlab.com, el proceso es el mismo.</p>
 
 
 
-<ul><li>Particionado, que dependerá de la configuración deseada de cada cual.</li><li>Instalación o no junto a otro sistema operativo.</li></ul>
+<h3>Certificados RSA</h3>
 
 
 
-<p>En el último caso particularmente, es mejor realizar la instalación desde un Debian limpio.</p>
+<p>Para trabajar con git mediante certificados ssh, lo primero que deberemos hacer sera crear los certificados.</p>
 
 
 
-<p>Esto es debido a que la instalación desde la ISO oficial no lo facilita ya que su enfoque es el de ser el único S.O del equipo.</p>
+<p>En mi caso trabajo en Debian GNU/Linux y es el método sobre el que escribiré. Mi preferencia es la de crear certificados por usuario y sitio e intentar evitar la reutilización de certificados, pero al fin y al cabo para gustos los colores.</p>
 
 
 
-<p>La instalación en principio configuraría grub para poder seleccionar a discreción.</p>
+<p>Desde la terminal y con nuestro usuario de trabajo, realizaremos los siguientes pasos:</p>
 
 
 
-<p>Así que si planeas instalarlo de esa manera, realiza una instalación previa de Debian junto con por ejemplo, Windows. Haz lo que sigue.</p>
+<p>Confirmación de ssh-agent corriendo en el sistema:</p>
 
 
 
-<p>Siguiendo la documentación, configuramos hostname correctamente para que sea resuelto. Editando /etc/hosts y dejándolo por ejemplo así:</p>
+<pre class="wp-block-preformatted"><code>eval $(ssh-agent -s)</code></pre>
 
 
 
-<pre class="wp-block-code"><code>127.0.0.1 localhost.localdomain localhost
-192.168.1.100 pve.example.com pve
-# The following lines are desirable for IPv6 capable hosts
-::1     ip6-localhost ip6-loopback
-fe00::0 ip6-localnet
-ff00::0 ip6-mcastprefix
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-ff02::3 ip6-allhosts</code></pre>
+<p>Creación del directorio especifico donde irán los certificados y desplazamiento al directorio en cuestión. Una vez dentro crearemos los nuevos certificados de tipo RSA.</p>
 
 
 
-<p>Tampoco hay que olvidar establecer ip estatica sino se ha hecho ya, editando &#8216;/etc/network/interfaces&#8217;, ejemplo:</p>
+<pre class="wp-block-preformatted">mkdir -p ~/.ssh/gitlab.company.com &amp;&amp; cd ~/.ssh/gitlab.company.com</pre>
 
 
 
-<pre class="wp-block-code"><code># This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
+<pre class="wp-block-preformatted"><code>ssh-keygen -t rsa -b 2048 -C "email@example.com"</code></pre>
 
-# The loopback network interface
-auto lo
-iface lo inet loopback
 
-# The primary network interface
-# allow-hotplug eth0
-# iface eth0 inet dhcp
 
-# Static IP address
-auto eth0
-iface eth0 inet static
-        address 192.168.1.100
-        netmask 255.255.255.0
-        network 192.168.1.0
-        broadcast 192.168.1.255
-        gateway 192.168.1.1</code></pre>
+<p>Nos creara dos certificados uno privado y otro publico. Ahora añadiremos la key privada a nuestro agente ssh.</p>
 
 
 
-<p>Añadimos el repositorio al source.list:</p>
+<pre class="wp-block-preformatted"><code>ssh-add ~/.ssh/gitlab.company.com</code></pre>
 
 
 
-<pre class="wp-block-code"><code>echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" > /etc/apt/sources.list.d/pve-install-repo.list</code></pre>
+<p>Crearemos un fichero en &#8216;~/.ssh/config&#8217; con el siguiente contenido para decirle al agente que certificado usar con que servidor.</p>
 
 
 
-<p>Y también su key:</p>
+<pre class="wp-block-preformatted"># ejemplo con mismo nombre de usuario
+# GitLab.com
+Host gitlab.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/<code>gitlab.company.com</code>
 
+# con instancia privada de gitlab
+Host gitlab.company.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/<code>gitlab.company.com</code>
+</pre>
 
 
-<pre class="wp-block-code"><code>wget http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg</code></pre>
 
+<pre class="wp-block-preformatted"># ejemplo con diferente nombre de usuario
+# GitLab.com
+Host usuario.gitlab.com
+  Hostname gitlab.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/gitlab_com_rsa
 
+# con instancia privada de gitlab
+Host usuario.gitlab.company.com
+  Hostname gitlab.company.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/example_com_rsa
+</pre>
 
-<p>Actualizamos el sistema e instalamos:</p>
 
 
+<p>Copiamos la clave publica que hemos creado y la añadimos a nuestro usuario desde el panel de control del mismo en gitlab. Una vez hecho testeamos con:</p>
 
-<pre class="wp-block-code"><code>apt update &amp;&amp; apt full-upgrade</code></pre>
 
 
+<pre class="wp-block-preformatted"><code>ssh -T git@gitlab.com</code>
 
-<pre class="wp-block-code"><code>apt install proxmox-ve postfix open-iscsi</code></pre>
+# ó
 
+<code>ssh -T git@</code>gitlab.company.com</pre>
 
 
-<p>Y respondemos según necesidades aunque sino estás seguro con las respuestas responde no y local. Cuando termine reiniciamos.</p>
 
+<p>Si pasa el test correctamente, ya podríamos trabajar a través de ssh utilizando la siguiente sintaxis de ejemplo:</p>
 
 
-<p>Nos quedaría conectarnos al administrador web en el puerto 8006 y revisar la configuración de red, donde deberemos crear un Linux Bridge y reiniciar el sistema o las interface de red.</p>
 
+<pre class="wp-block-preformatted">git remote add origin git@usuario.gitlab.company.com:usuario/nombre-repositorio.git</pre>
 
 
-<p>Opcionalmente se nos recomienda desinstalar os-prober si no se va instalar junto a otro sistema.</p>
 
+<h3>Firmar commits con GPG</h3>
 
 
-<pre class="wp-block-code"><code>apt remove os-prover</code></pre>
 
+<p>Creamos los certificados con el siguiente comando, respondiendo todo por defecto, excepto los datos personales y la longitud de la clave que la fijaremos en 4096:</p>
 
 
-<p> y los kernel de debian.</p>
 
+<pre class="wp-block-preformatted">gpg --full-gen-key</pre>
 
 
-<pre class="wp-block-code"><code>apt remove linux-image-amd64 'linux-image-4.19*'</code></pre>
 
+<p>Ahora buscaremos el id asociado a la clave:</p>
 
 
-<pre class="wp-block-code"><code>update-grub</code></pre>
 
+<pre class="wp-block-preformatted">gpg --list-secret-keys --keyid-format LONG tuemail@exmple.com</pre>
 
 
-<p>Una vez dentro, si actualizamos el sistema, lanzara errores debido a que intentara actualizarse contra el repositorio de suscripción. Por lo que si no se dispone de suscripción sera mejor no habilitarlos renombrando/eliminando el repositorio de la ubicación &#8216;/etc/apt/sources.d/&#8217;.</p>
 
+<p>Buscaremos la linea que comienza por ‘sec’ y copiaremos los números que siguen a ‘rsa4096/’ pero sin la fecha.</p>
 
 
-<p>Continuara&#8230;</p>
+
+<p>Exportaremos la clave publica con el siguiente comando cuya salida sera la que copiemos en su apartado de nuestra cuenta de gitlab.</p>
+
+
+
+<pre class="wp-block-preformatted">gpg --armor --export id-anterior</pre>
+
+
+
+<p>Ese mismo id lo utilizaremos también para asociarlo a nuestro git y así poder utilizar la firma.</p>
+
+
+
+<pre class="wp-block-preformatted">git config --global user.signingkey id-anterior</pre>
+
+
+
+<p>Ahora utilizaríamos la bandera ‘-S’ en cada commit pero si preferimos podemos decirle a git que lo haga siempre con:</p>
+
+
+
+<pre class="wp-block-preformatted">git config --global commit.gpgsign true</pre>
+
+
+
+<p>Listo ahora cada commit que hagamos sera firmado y reconocido por gitlab como verificado.</p>
+
+
+
+<p>Para más info visitar su maravillosa <a href="https://docs.gitlab.com/">documentación</a>.</p>
+
+
+
+<p>Saludos.</p>
 </div>
               <div class="post-meta">
                 <ul>
                   <li><span class="ion-pricetag"></span> <a href="/blog/tags/debian-gnu-linux">Debian GNU/Linux</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/proxmox">Proxmox VE</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/git">Git</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gitlab-ce">GitLab CE</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gpg">GPG</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/ssh">SSH</a></li>
                 </ul>
               </div>
             </div>
