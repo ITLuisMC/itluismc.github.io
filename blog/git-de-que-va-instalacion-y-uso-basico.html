@@ -2,12 +2,12 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>LuisMC | Presentación de esta Web</title>
+    <title>LuisMC | Git: De que va, instalación y uso básico</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Luis Martínez">
     <meta name="copyright" content="Propietario del copyright">
-    <meta name="keywords" content="bootstrap,css3,Debian,Desarrollo,docker,GNU-Linux,gulp,html,javascript,nodejs">
-    <meta name="description" content="Presentación de esta web como proyecto profesional y personal.">
+    <meta name="keywords" content="Control de Versiones,Desarrollo,Git,Github,Gitlab,Visual Studio Code">
+    <meta name="description" content="Articulo acerca de Git, otro invento de Linus Torvalds y de su uso básico.">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
     <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Inicio</a></li>
               <li class="breadcrumb-item active"><a href="/blog/git-de-que-va-instalacion-y-uso-basico">Blog</a></li>
-              <li class="breadcrumb-item active">Presentación de esta Web</li>
+              <li class="breadcrumb-item active">Git: De que va, instalación y uso básico</li>
             </ol>
           </div>
         </div>
@@ -53,84 +53,185 @@
         <div class="row">
           <div class="col-md-8">
             <div class="post-box">
-              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/presentacion-de-esta-web.png" alt=""></div>
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/git-de-que-va-instalacion-y-uso-basico.png" alt=""></div>
               <div class="post-meta">
-                <h1 class="article-title">Presentación de esta Web</h1>
+                <h1 class="article-title">Git: De que va, instalación y uso básico</h1>
                 <ul>
                   <li><span class="ion-ios-person"></span> <a href="/">Luis Martínez</a></li>
-                  <li> <span>26 de Noviembre del 2020</span></li>
+                  <li> <span>16 de Diciembre del 2020</span></li>
                 </ul>
               </div>
               <div class="article-content">
-<p>Saludos y bienvenidos a mi web. Me alegra que hayas llegado aquí y espero disfrutes y valores positivamente su contenido.</p>
+<h3><strong>¿De que va?</strong></h3>
 
 
 
-<p>Este es un proyecto muy personal y lejos de llegar a ser perfecto al igual que un servidor, su objetivo es mostrar lo que hago y me gusta.</p>
+<p>Git es un software de control de versiones que a día de hoy todo el mundillo de la ‘informática’ ya conoce y usa. O debería.</p>
 
 
 
-<p>Pese a su sencillez desde la pantalla de tu dispositivo tiene más trabajo del que aparenta. Al igual que las personas y citando a shrek &#8216;es como las cebollas&#8217; hay capas.</p>
+<p>Diseñado por Linus Torvalds, también conocido por iniciar y mantener el núcleo Linux. Ahí es ‘nada’.</p>
 
 
 
-<p>El diseño web corre a cargo de un tema html free, el cual es el que he usado como plantilla. En el footer he mantenido su copyright por si te interesa, por respeto al autor y por principios.</p>
+<p>Básicamente y a ojo de buen cubero este software nos permite llevar un completo registro en la producción de software, permitiendo además la centralización de código de manera organizada para trabajos en proyectos de más de una persona.</p>
 
 
 
-<p>El tema se llama DevFolio, si lo buscas obviamente encontraras diferencias, pero de ahi salio este diseño. </p>
+<p>Cada commit y su posterior push podríamos llegar a considerarlo como un salvar la partida en la consola de toda la vida.</p>
 
 
 
-<p>Todas las etiquetas de este artículo, asi como los que le sigan, son las tecnologías o hard skills utilizadas.</p>
+<p>Este software es tan importante en la vida de cualquier desarrollador de software que ha evolucionado a plataformas tan completas como Gitlab CE, las cuales ya se pueden considerar una abstracta fabrica de software. Llevando todo el proceso de creación de software, desde que entra la idea hasta que sale el producto.</p>
 
 
 
-<p>Según vaya escribiendo artículos, mi perfil, hard skills y servicios&nbsp; relacionados en mi landing page cambiaran. Y lo harán dependiendo sobre lo que más escriba.</p>
+<h3>Instalación</h3>
 
 
 
-<p>La lógica utilizada en la valoración de mi experiencia es que cada hard skill, pertenece a uno o varios perfiles y tiene un numero de artículos relacionados en los que se ha utilizado(experiencia). Por lo que a más artículos relacionados más experiencia.</p>
+<p>Su instalación en sistemas GNU/Linux no tiene más misterio que el uso de su gestor de paquetes. Soy usuario Debian GNU/Linux y es la forma utilizo.</p>
 
 
 
-<p>En cuanto al backend, utilizo la API de una instalación de wordpress en un&nbsp;servidor de mi lan.</p>
+<p>Tanto en Mac como en Windows, con descargarte su binario correspondiente e instalarlo lo tendrás en el equipo.</p>
 
 
 
-<p>Este wordpress lo utilizo para crear y organizar los artículos y categorías&nbsp;de esta web.</p>
+<h3>Configuración básica</h3>
 
 
 
-<p>Para integrarlo todo desarrolle una aplicación con nodejs.</p>
+<p>Lo primero sera configurar las opciones globales con las que firmaras tus commits, las principales u obligatorias son nombre y email:</p>
 
 
 
-<p>Está se encarga de acceder a la API, procesar la info y generar los ficheros pug con los que compilar finalmente el html.</p>
+<ul><li>Nombre</li></ul>
 
 
 
-<p>Esta web evolucionara, se adaptara y crecera mientras la alimente, presentandome digitalmente en cierta medida como profesional y persona.</p>
+<pre class="wp-block-code"><code>git config --global user.name "Pepe Botika"</code></pre>
 
 
 
-<p>El primer proyecto esta hecho, ahora solo queda no pararse y continuar que hay mucho por aprender.</p>
+<ul><li>Email</li></ul>
 
 
 
-<p>Saludos y gracias si has llegado hasta aquí.</p>
+<pre class="wp-block-code"><code>git config --global user.email pepebotika@evaristo.com</code></pre>
+
+
+
+<p>Los demás parámetros que son unos cuantos se pueden consultar en el caso Debian con el auto completado haciendo doble tab después de ‘–‘.</p>
+
+
+
+<p>Las demás como con todas las aplicaciones de software se conocen sobre todo con el uso, por lo que a modo de redondeo y chuleta estos son los básicos:</p>
+
+
+
+<ul><li>Clonar repositorio remoto:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git clone git@gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
+
+
+
+<ul><li>Añadir una fuente remota:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git remote add origin git@usuario.gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
+
+
+
+<ul><li>Seleccionar un origen remoto existente:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git remote set-url origin git@usuario.gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
+
+
+
+<ul><li>Ver estado del proyecto, si hay commits pendientes, archivos sin seguimiento, etc:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git status</code></pre>
+
+
+
+<ul><li>Añadir todo el contenido nuevo/modificado al index para su posterior commit:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git add --all</code></pre>
+
+
+
+<p>o selectivo con:</p>
+
+
+
+<pre class="wp-block-code"><code>git add fichero</code></pre>
+
+
+
+<ul><li>Procesar cambios con commit, aquí la bandera ‘-m’ se utiliza para seleccionar el mensaje descriptivo, ‘-a’ para todos los que ya se encuentran registrados en el index, por lo que nos ahorraríamos el ‘git add’ y ‘-S’ para firmar el commit con firmas GPG si estas están configuradas previamente.</li></ul>
+
+
+
+<pre class="wp-block-preformatted"><code>git commit -m "Algún mensaje descriptivo"</code>
+<code>git commit -a -m "Algún mensaje descriptivo"</code>
+<code>git commit -a -S -m "Algún mensaje descriptivo"</code></pre>
+
+
+
+<ul><li>Para subir todos los cambios de todas las ramas a su remoto utilizamos la bandera ‘–all’.</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git push -u 'remoto' --all</code></pre>
+
+
+
+<p>o también selectivamente:</p>
+
+
+
+<pre class="wp-block-code"><code>git push -u 'remoto' 'rama'</code></pre>
+
+
+
+<p>Cambiar entre ramas con checkout, si añadimos ‘-b’ creamos la rama de no existir y sino solo nos desplazamos a ella:</p>
+
+
+
+<pre class="wp-block-preformatted"><code>git checkout otrarama</code>
+<code>git checkout -b rama-nueva</code></pre>
+
+
+
+<p>Los demás comandos básicos a estas alturas son muy intuitivos, siendo branch para trabajar con las ramas y pull para descargar/actualizar los cambios de la rama remota en la local.</p>
+
+
+
+<p>Creo que con esto ya se puede empezar a gatear con los repositorios de nuestros proyectos. Para usos más avanzado solo su documentación y la experiencia la completaran.</p>
+
+
+
+<p>Saludos.</p>
 </div>
               <div class="post-meta">
                 <ul>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/bootstrap">Bootstrap</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/css">CSS</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/tags/debian-gnu-linux">Debian GNU/Linux</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/docker-ce">Docker CE</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/dev-ops">DevOps</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/tags/git">Git</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/tags/github">GitHub</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/tags/gitkraken">GitKraken</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gulp">Gulp</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/html">HTML</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/gitlab-ce">GitLab CE</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/tags/windows">Windows</a></li>
                 </ul>
               </div>
             </div>
