@@ -2,11 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>luismc.es | Instalación de Proxmox VE sobre Debian Buster</title>
+    <title>luismc.es | Git: Instalación y uso básico</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
-    <meta content="Debian,Proxmox,servidor,Sistemas,virtualizacion" name="keywords">
-    <meta content="Articulo sobre la instalación de Proxmox VE, un entorno de virtualización
-opensource." name="description">
+    <meta content="Control de Versiones,Desarrollo,Git,Github,Gitlab,Visual Studio Code" name="keywords">
+    <meta content="Articulo acerca de Git, otro invento de Linus Torvalds y de su uso básico." name="description">
     <meta name="author" content="BootstrapMade">
     <meta name="copyright" content="Propietario del copyright">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
@@ -21,193 +20,214 @@ opensource." name="description">
     <link href="../assets/css/custom.css" rel="stylesheet">
   </head>
   <body>
-    <!--/ Nav Star /-->
     <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
-      <div class="container"><a class="navbar-brand js-scroll" href="#page-top">LuisMC</a>
+      <div class="container"><a class="navbar-brand js-scroll" href="/">LuisMC</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
         <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link js-scroll" href="/">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll" href="/#about">Acerca de</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll" href="/#contact">Contacto</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <!--/ Nav End /-->
-    <!--/ Intro Skew Star /-->
     <div class="intro intro-single route bg-image" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
           <div class="container">
-            <h2 class="intro-title mb-4">Instalación de Proxmox VE sobre Debian Buster</h2>
+            <h2 class="intro-title mb-4">Git: Instalación y uso básico</h2>
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Blog</a></li>
-              <li class="breadcrumb-item active">Instalación de Proxmox VE sobre Debian Buster</li>
+              <li class="breadcrumb-item active">Git: Instalación y uso básico</li>
             </ol>
           </div>
         </div>
       </div>
     </div>
-    <!--/ Intro Skew End /-->
-    <!--/ Section Blog-Single Star /-->
     <section class="blog-wrapper sect-pt4" id="blog">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <!--/ Post-box Star /-->
             <div class="post-box">
-              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/instalacion-de-proxmox-ve-sobre-debian-buster/instalacion-de-proxmox-ve-sobre-debian-buster.png" alt="Imagen destacada de Instalación de Proxmox VE sobre Debian Buster"></div>
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/git-instalacion-y-uso-basico/git-instalacion-y-uso-basico.png" alt="Imagen destacada de Git: Instalación y uso básico"></div>
               <div class="post-meta">
-                <h1 class="article-title">Instalación de Proxmox VE sobre Debian Buster</h1>
+                <h1 class="article-title">Git: Instalación y uso básico</h1>
                 <ul>
                   <li><span class="ion-ios-person"></span> <a href="/">luismc</a></li>
-                  <li> <span>04 de Diciembre del 2020</span></li>
+                  <li> <span>16 de Diciembre del 2020</span></li>
                 </ul>
               </div>
               <div class="article-content">
-<p>La instalación es muy sencilla, típica de distribuciones basadas en Debian. Las únicas decisiones técnicas importantes son:</p>
+<h3><strong>¿De que va?</strong></h3>
 
 
 
-<ul><li>Particionado, que dependerá de la configuración deseada de cada cual.</li><li>Instalación o no junto a otro sistema operativo.</li></ul>
+<p>Git es un software de control de versiones que a día de hoy todo el mundillo de la ‘informática’ ya conoce y usa. O debería.</p>
 
 
 
-<p>En el último caso particularmente, es mejor realizar la instalación desde un Debian limpio.</p>
+<p>Diseñado por Linus Torvalds, también conocido por iniciar y mantener el núcleo Linux. Ahí es ‘nada’.</p>
 
 
 
-<p>Esto es debido a que la instalación desde la ISO oficial no lo facilita ya que su enfoque es el de ser el único S.O del equipo.</p>
+<p>Básicamente y a ojo de buen cubero este software nos permite llevar un completo registro en la producción de software, permitiendo además la centralización de código de manera organizada para trabajos en proyectos de más de una persona.</p>
 
 
 
-<p>La instalación en principio configuraría grub para poder seleccionar a discreción.</p>
+<p>Cada commit y su posterior push podríamos llegar a considerarlo como un salvar la partida en la consola de toda la vida.</p>
 
 
 
-<p>Así que si planeas instalarlo de esa manera, realiza una instalación previa de Debian junto con por ejemplo, Windows. Haz lo que sigue.</p>
+<p>Es tan importante en la vida de cualquier desarrollador de software que ha evolucionado a plataformas tan completas como Gitlab CE, las cuales ya se pueden considerar una abstracta fabrica de software. Llevando todo el proceso de creación de software, desde que entra la idea hasta que sale el producto.</p>
 
 
 
-<p>Siguiendo la documentación, configuramos hostname correctamente para que sea resuelto. Editando /etc/hosts y dejándolo por ejemplo así:</p>
+<h3>Instalación</h3>
 
 
 
-<pre class="wp-block-code"><code>127.0.0.1 localhost.localdomain localhost
-192.168.1.100 pve.example.com pve
-# The following lines are desirable for IPv6 capable hosts
-::1     ip6-localhost ip6-loopback
-fe00::0 ip6-localnet
-ff00::0 ip6-mcastprefix
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-ff02::3 ip6-allhosts</code></pre>
+<p>Su instalación en sistemas GNU/Linux no tiene más misterio que el uso de su gestor de paquetes. Soy usuario Debian GNU/Linux y es la forma que utilizo.</p>
 
 
 
-<p>Tampoco hay que olvidar establecer ip estatica sino se ha hecho ya, editando &#8216;/etc/network/interfaces&#8217;, ejemplo:</p>
+<p>Tanto en Mac como en Windows, con descargarte su binario correspondiente e instalarlo, lo tendrás en el equipo.</p>
 
 
 
-<pre class="wp-block-code"><code># This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
+<h3>Configuración básica</h3>
 
-# The loopback network interface
-auto lo
-iface lo inet loopback
 
-# The primary network interface
-# allow-hotplug eth0
-# iface eth0 inet dhcp
 
-# Static IP address
-auto eth0
-iface eth0 inet static
-        address 192.168.1.100
-        netmask 255.255.255.0
-        network 192.168.1.0
-        broadcast 192.168.1.255
-        gateway 192.168.1.1</code></pre>
+<p>Lo primero sera configurar las opciones globales con las que firmaras tus commits, las principales u obligatorias son nombre y email:</p>
 
 
 
-<p>Añadimos el repositorio al source.list:</p>
+<ul><li>Nombre</li></ul>
 
 
 
-<pre class="wp-block-code"><code>echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" > /etc/apt/sources.list.d/pve-install-repo.list</code></pre>
+<pre class="wp-block-code"><code>git config --global user.name "Pepe Botika"</code></pre>
 
 
 
-<p>Y también su key:</p>
+<ul><li>Email</li></ul>
 
 
 
-<pre class="wp-block-code"><code>wget http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg</code></pre>
+<pre class="wp-block-code"><code>git config --global user.email pepebotika@evaristo.com</code></pre>
 
 
 
-<p>Actualizamos el sistema e instalamos:</p>
+<p>Los demás parámetros que son unos cuantos se pueden consultar en el caso Debian con el auto completado haciendo doble tab después de ‘–‘.</p>
 
 
 
-<pre class="wp-block-code"><code>apt update &amp;&amp; apt full-upgrade</code></pre>
+<p>Las demás como con todas las aplicaciones de software se conocen sobre todo con el uso, por lo que a modo de redondeo y chuleta estos son los básicos:</p>
 
 
 
-<pre class="wp-block-code"><code>apt install proxmox-ve postfix open-iscsi</code></pre>
+<ul><li>Clonar repositorio remoto:</li></ul>
 
 
 
-<p>Y respondemos según necesidades aunque sino estás seguro con las respuestas responde no y local. Cuando termine reiniciamos.</p>
+<pre class="wp-block-code"><code>git clone git@gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
 
 
 
-<p>Nos quedaría conectarnos al administrador web en el puerto 8006 y revisar la configuración de red, donde deberemos crear un Linux Bridge y reiniciar el sistema o las interface de red.</p>
+<ul><li>Añadir una fuente remota:</li></ul>
 
 
 
-<p>Opcionalmente se nos recomienda desinstalar os-prober si no se va instalar junto a otro sistema.</p>
+<pre class="wp-block-code"><code>git remote add origin git@usuario.gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
 
 
 
-<pre class="wp-block-code"><code>apt remove os-prover</code></pre>
+<ul><li>Seleccionar un origen remoto existente:</li></ul>
 
 
 
-<p> y los kernel de debian.</p>
+<pre class="wp-block-code"><code>git remote set-url origin git@usuario.gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
 
 
 
-<pre class="wp-block-code"><code>apt remove linux-image-amd64 'linux-image-4.19*'</code></pre>
+<ul><li>Ver estado del proyecto, si hay commits pendientes, archivos sin seguimiento, etc:</li></ul>
 
 
 
-<pre class="wp-block-code"><code>update-grub</code></pre>
+<pre class="wp-block-code"><code>git status</code></pre>
 
 
 
-<p>Una vez dentro, si actualizamos el sistema, lanzara errores debido a que intentara actualizarse contra el repositorio de suscripción. Por lo que si no se dispone de suscripción sera mejor no habilitarlos renombrando/eliminando el repositorio de la ubicación &#8216;/etc/apt/sources.d/&#8217;.</p>
+<ul><li>Añadir todo el contenido nuevo/modificado al index para su posterior commit:</li></ul>
 
 
 
-<p>Continuara&#8230;</p>
+<pre class="wp-block-code"><code>git add --all</code></pre>
+
+
+
+<p>o selectivo con:</p>
+
+
+
+<pre class="wp-block-code"><code>git add fichero</code></pre>
+
+
+
+<ul><li>Procesar cambios con commit, aquí la bandera ‘-m’ se utiliza para seleccionar el mensaje descriptivo, ‘-a’ para todos los que ya se encuentran registrados en el index, por lo que nos ahorraríamos el ‘git add’ y ‘-S’ para firmar el commit con firmas GPG si estas están configuradas previamente.</li></ul>
+
+
+
+<pre class="wp-block-preformatted"><code>git commit -m "Algún mensaje descriptivo"</code><br><code>git commit -a -m "Algún mensaje descriptivo"</code><br><code>git commit -a -S -m "Algún mensaje descriptivo"</code></pre>
+
+
+
+<ul><li>Para subir todos los cambios de todas las ramas a su remoto utilizamos la bandera ‘–all’.</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git push -u 'remoto' --all</code></pre>
+
+
+
+<p>o también selectivamente:</p>
+
+
+
+<pre class="wp-block-code"><code>git push -u 'remoto' 'rama'</code></pre>
+
+
+
+<p>Cambiar entre ramas con checkout, si añadimos ‘-b’ creamos la rama de no existir y sino solo nos desplazamos a ella:</p>
+
+
+
+<pre class="wp-block-preformatted"><code>git checkout otrarama</code><br><code>git checkout -b rama-nueva</code></pre>
+
+
+
+<p>Los demás comandos básicos a estas alturas son muy intuitivos, siendo branch para trabajar con las ramas y pull para descargar/actualizar los cambios de la rama remota en la local.</p>
+
+
+
+<p>Creo que con esto ya se puede empezar a gatear con los repositorios de nuestros proyectos. Para usos más avanzado solo su documentación y la experiencia la completaran.</p>
+
+
+
+<p>Saludos.</p>
 </div>
               <div class="post-meta">
                 <ul>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/debian">Debian</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/proxmox">Proxmox</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/servidor">servidor</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/sistemas">Sistemas</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/virtualizacion">virtualizacion</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/control-de-versiones">Control de Versiones</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/desarrollo">Desarrollo</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/git">Git</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/github">Github</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/gitlab">Gitlab</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/visual-studio-code">Visual Studio Code</a></li>
                 </ul>
               </div>
             </div>
-            <!--/ Post-box End /-->
-            <!--/ box-comments Star /-->
             <div class="box-comments disqus">
               <div class="title-box-2">
                 <h4 class="title-comments title-left">Comparte tu Opinión</h4>
@@ -215,28 +235,20 @@ iface eth0 inet static
               <div id="disqus_thread"></div>
               <noscript>Por favor acive javascript para un correcto funcionamiento.</noscript>
             </div>
-            <!--/ box-comments End /-->
-            <!--/ form-comments Star /-->
-            <!--/ form-comments End /						-->
           </div>
           <div class="col-md-4">
-            <!--/ sidebar-search Star /-->
-            <!--/ sidebar-search End /-->
-            <!--/ sidebar-recents Star /-->
             <div class="widget-sidebar">
               <h5 class="sidebar-title">Last-Posts</h5>
               <div class="sidebar-content">
                 <ul class="list-sidebar">
-                  <li><a href="/blog/git-de-que-va-instalacion-y-uso-basico">Git: De que va, instalación y uso básico</a></li>
-                  <li><a href="/blog/primeros-pasos-en-gitlab-configuracion-ssh-y-keys-rsa-y-gpg">Primeros pasos en Gitlab: Configuración ssh y keys rsa y gpg</a></li>
-                  <li><a href="/blog/instalacion-de-proxmox-ve-sobre-debian-buster">Instalación de Proxmox VE sobre Debian Buster</a></li>
-                  <li><a href="/blog/instalacion-de-gitlab-en-debian">Instalación de GitLab CE</a></li>
+                  <li><a href="/blog/git-instalacion-y-uso-basico">Git: Instalación y uso básico</a></li>
+                  <li><a href="/blog/gitlab-ssh-keys-rsa-y-gpg">Gitlab: ssh, keys rsa y gpg</a></li>
+                  <li><a href="/blog/proxmox-ve-instalacion">Proxmox VE: Instalación</a></li>
+                  <li><a href="/blog/gitlab-ce-instalacion">GitLab CE: Instalación</a></li>
                   <li><a href="/blog/presentacion-de-esta-web">Presentación de esta Web</a></li>
                 </ul>
               </div>
             </div>
-            <!--/ sidebar-recents End /-->
-            <!--/ sidebar-archives Star /-->
             <div class="widget-sidebar">
               <h5 class="sidebar-title">sections</h5>
               <div class="sidebar-content">
@@ -273,8 +285,6 @@ iface eth0 inet static
                 </ul>
               </div>
             </div>
-            <!--/ sidebar-archives End /-->
-            <!--/ sidebar-tags Star /-->
             <div class="widget-sidebar widget-tags">
               <h5 class="sidebar-title">Tags</h5>
               <div class="sidebar-content">
@@ -304,16 +314,12 @@ iface eth0 inet static
                 </ul>
               </div>
             </div>
-            <!--/ sidebar-tags End /-->
           </div>
         </div>
       </div>
     </section>
-    <!--/ Section Blog-Single End /-->
-    <!--/ Section Contact-Footer Star /-->
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/overlay-bg.jpg)">
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
-      <!--/ footer Start /-->
       <footer>
         <div class="container">
           <div class="row">
@@ -335,11 +341,8 @@ iface eth0 inet static
           </div>
         </div>
       </footer>
-      <!--/ footer End /-->
-    </section>
-    <!--/ Section Contact-footer End /--><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
+    </section><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
     <div id="preloader"></div>
-    <!--/ Scripts start /-->
     <!-- JavaScript Libraries -->
     <script src="../assets/lib/jquery/jquery.min.js"></script>
     <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
@@ -356,6 +359,5 @@ iface eth0 inet static
     <!-- Template Main Javascript File -->
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/disqus.js"></script>
-    <!--/ Scripts end /-->
   </body>
 </html>

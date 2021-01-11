@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>luismc.es | Instalación de GitLab CE</title>
+    <title>luismc.es | Proxmox VE: Instalación</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
-    <meta content="Automatización,Desarrollo,DevOps,docker,Proxmox,Sistemas" name="keywords">
-    <meta content="Articulo sobre las diferentes formas de instalacion de GitLab CE." name="description">
+    <meta content="Debian,Proxmox,servidor,Sistemas,virtualizacion" name="keywords">
+    <meta content="Articulo sobre la instalación de Proxmox VE, un entorno de virtualización
+opensource." name="description">
     <meta name="author" content="BootstrapMade">
     <meta name="copyright" content="Propietario del copyright">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
@@ -20,172 +21,183 @@
     <link href="../assets/css/custom.css" rel="stylesheet">
   </head>
   <body>
-    <!--/ Nav Star /-->
     <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
-      <div class="container"><a class="navbar-brand js-scroll" href="#page-top">LuisMC</a>
+      <div class="container"><a class="navbar-brand js-scroll" href="/">LuisMC</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
         <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link js-scroll" href="/">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll" href="/#about">Acerca de</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll" href="/#contact">Contacto</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <!--/ Nav End /-->
-    <!--/ Intro Skew Star /-->
     <div class="intro intro-single route bg-image" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
           <div class="container">
-            <h2 class="intro-title mb-4">Instalación de GitLab CE</h2>
+            <h2 class="intro-title mb-4">Proxmox VE: Instalación</h2>
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Blog</a></li>
-              <li class="breadcrumb-item active">Instalación de GitLab CE</li>
+              <li class="breadcrumb-item active">Proxmox VE: Instalación</li>
             </ol>
           </div>
         </div>
       </div>
     </div>
-    <!--/ Intro Skew End /-->
-    <!--/ Section Blog-Single Star /-->
     <section class="blog-wrapper sect-pt4" id="blog">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <!--/ Post-box Star /-->
             <div class="post-box">
-              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/instalacion-de-gitlab-en-debian/instalacion-de-gitlab-en-debian.png" alt="Imagen destacada de Instalación de GitLab CE"></div>
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/proxmox-ve-instalacion/proxmox-ve-instalacion.png" alt="Imagen destacada de Proxmox VE: Instalación"></div>
               <div class="post-meta">
-                <h1 class="article-title">Instalación de GitLab CE</h1>
+                <h1 class="article-title">Proxmox VE: Instalación</h1>
                 <ul>
                   <li><span class="ion-ios-person"></span> <a href="/">luismc</a></li>
-                  <li> <span>02 de Diciembre del 2020</span></li>
+                  <li> <span>04 de Diciembre del 2020</span></li>
                 </ul>
               </div>
               <div class="article-content">
-<p>Últimamente estoy desarrollando mi propio flujo de trabajo. Y aunque aún me falta, quisiera integrarlo en un ambiente DevOps con GitLab CE en mi servidor de trabajo.</p>
+<p>La instalación es muy sencilla, típica de distribuciones basadas en Debian. Las únicas decisiones técnicas importantes son:</p>
 
 
 
-<p>GitLab parece que aparte de ser un lugar donde guardar y compartir tus repositorios también es una completa plataforma DevOps. Pudiendo crear tus propios Docker en ella, montar un registry, tareas para runners y desplegar tus apps y un largo etc.</p>
+<ul><li>Particionado, que dependerá de la configuración deseada de cada cual.</li><li>Instalación o no junto a otro sistema operativo.</li></ul>
 
 
 
-<p>Por lo que en un futuro articulo me enfocare en la experiencia final, de como se integra todo y si realmente es lo que busco para automatizar lo automatizable.</p>
+<p>En el último caso particularmente, es mejor realizar la instalación desde un Debian limpio.</p>
 
 
 
-<p>Mientras tanto, escribiré aquí como se realiza una instalación con certificados autofirmados en debian 10 y también lo propio usando Docker.</p>
+<p>Esto es debido a que la instalación desde la ISO oficial no lo facilita ya que su enfoque es el de ser el único S.O del equipo.</p>
 
 
 
-<p>No es muy complicado, realmente cada vez facilitan más la tarea. Por lo que siguiendo los pasos indicados en la documentación oficial, comenzaremos por instalar dependencias necesarias:</p>
+<p>La instalación en principio configuraría grub para poder seleccionar a discreción.</p>
 
 
 
-<pre class="wp-block-code"><code>apt install -y curl openssh-server ca-certificates postfix easy-rsa</code></pre>
+<p>Así que si planeas instalarlo de esa manera, realiza una instalación previa de Debian junto con por ejemplo, Windows. Haz lo que sigue.</p>
 
 
 
-<p>Y también sus repositorios:</p>
+<p>Siguiendo la documentación, configuramos hostname correctamente para que sea resuelto. Editando /etc/hosts y dejándolo por ejemplo así:</p>
 
 
 
-<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash</code></pre>
+<pre class="wp-block-code"><code>127.0.0.1 localhost.localdomain localhost
+192.168.1.100 pve.example.com pve
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts</code></pre>
 
 
 
-<p id="block-0cb09119-e69f-4823-a97b-4c29640ba5f3">Si quisiéramos una instalación con certificados automáticos de Let&#8217;s Encrypt, ejecutaríamos el siguiente comando teniendo en cuenta de que el servidor entonces tendrá que estar accesible desde internet:</p>
+<p>Tampoco hay que olvidar establecer ip estatica sino se ha hecho ya, editando &#8216;/etc/network/interfaces&#8217;, ejemplo:</p>
 
 
 
-<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>EXTERNAL_URL="https://gitlab.example.com" apt install gitlab-ce</code></pre>
+<pre class="wp-block-code"><code># This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
 
+# The loopback network interface
+auto lo
+iface lo inet loopback
 
+# The primary network interface
+# allow-hotplug eth0
+# iface eth0 inet dhcp
 
-<p>Si no y queremos configurar unos certificados autofirmados, tan solo ejecutamos:</p>
+# Static IP address
+auto eth0
+iface eth0 inet static
+        address 192.168.1.100
+        netmask 255.255.255.0
+        network 192.168.1.0
+        broadcast 192.168.1.255
+        gateway 192.168.1.1</code></pre>
 
 
 
-<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>apt install gitlab-ce</code></pre>
+<p>Añadimos el repositorio al source.list:</p>
 
 
 
-<p>Para la configuración manual crearemos su directorio, generaremos unos certificados nuevos y le daremos los permisos adecuados:</p>
+<pre class="wp-block-code"><code>echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" &gt; /etc/apt/sources.list.d/pve-install-repo.list</code></pre>
 
 
 
-<pre id="block-0cb09119-e69f-4823-a97b-4c29640ba5f3" class="wp-block-code"><code>mkdir -p /etc/gitlab/ssl &amp;&amp; cd /etc/gitlab/ssl/</code></pre>
+<p>Y también su key:</p>
 
 
 
-<pre id="block-d788d11d-e349-46e4-aedf-7c439d561dad" class="wp-block-code"><code>openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 -keyout gitlab.example.com.key -out gitlab.example.com.crt</code></pre>
+<pre class="wp-block-code"><code>wget http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg</code></pre>
 
 
 
-<pre id="block-f2016306-82ca-41bb-af38-27425ba9f11d" class="wp-block-code"><code>chmod 755 /etc/gitlab/ssl</code></pre>
+<p>Actualizamos el sistema e instalamos:</p>
 
 
 
-<p>Editaremos el fichero de configuración indicándole el fqdn del servidor:</p>
+<pre class="wp-block-code"><code>apt update &amp;&amp; apt full-upgrade</code></pre>
 
 
 
-<pre id="block-e4c6fd86-d350-4415-8c47-57bec5c77d6c" class="wp-block-code"><code>nano /etc/gitlab/gitlab.rb</code></pre>
+<pre class="wp-block-code"><code>apt install proxmox-ve postfix open-iscsi</code></pre>
 
 
 
-<p>Buscando la linea siguiente y dejándola con tu fdqn:</p>
+<p>Y respondemos según necesidades aunque sino estás seguro con las respuestas responde no y local. Cuando termine reiniciamos.</p>
 
 
 
-<pre id="block-29c88920-4251-45b1-b7d2-a1e77cffee85" class="wp-block-code"><code>external_url "https://gitlab.example.com"</code></pre>
+<p>Nos quedaría conectarnos al administrador web en el puerto 8006 y revisar la configuración de red, donde deberemos crear un Linux Bridge y reiniciar el sistema o las interface de red.</p>
 
 
 
-<p>Por último ya solo falta ejecutar la configuración del Gitlab para que lo configure y levante finalmente:</p>
+<p>Opcionalmente se nos recomienda desinstalar os-prober si no se va instalar junto a otro sistema.</p>
 
 
 
-<pre id="block-edfbc14b-a8bf-4291-97a6-2e1e343f7251" class="wp-block-code"><code>gitlab-ctl reconfigure</code></pre>
+<pre class="wp-block-code"><code>apt remove os-prover</code></pre>
 
 
 
-<p>Cuando termine si todo salio bien nos indicara que ya está disponible y que la primera visita a la url seteara el password root de la instancia.</p>
+<p> y los kernel de debian.</p>
 
 
 
-<p>En cuanto a su instalación como contenedor Docker, aún más sencillo:</p>
+<pre class="wp-block-code"><code>apt remove linux-image-amd64 'linux-image-4.19*'</code></pre>
 
 
 
-<pre class="wp-block-code"><code>docker run --detach --hostname gitlab.example.com --env GITLAB_OMNIBUS_CONFIG="external_url 'http://gitlab.example.com'; gitlab_rails&#91;'lfs_enabled'] = true;" --publish 443:443 --publish 80:80 --publish 222:22 --name migitlab --restart always --volume /ruta/guardar/config:/etc/gitlab --volume /ruta/guardar/logs:/var/log/gitlab --volume /ruta/guardar/data:/var/opt/gitlab gitlab/gitlab-ce:latest</code></pre>
+<pre class="wp-block-code"><code>update-grub</code></pre>
 
 
 
-<p>Para más info pelearse con su documentación en <a href="https://docs.gitlab.com/omnibus/README.html">Docs-GitLab</a> y en <a href="https://hub.docker.com/r/gitlab/gitlab-ce/">docker-hub</a>. Por lo demás veremos que tal es GitLab y si hay amor.</p>
+<p>Una vez dentro, si actualizamos el sistema, lanzara errores debido a que intentara actualizarse contra el repositorio de suscripción. Por lo que si no se dispone de suscripción sera mejor no habilitarlos renombrando/eliminando el repositorio de la ubicación &#8216;/etc/apt/sources.d/&#8217;.</p>
 
 
 
-<p>Saludosss.</p>
+<p>Continuara&#8230;</p>
 </div>
               <div class="post-meta">
                 <ul>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/automatizacion">Automatización</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/desarrollo">Desarrollo</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/devops">DevOps</a></li>
-                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/docker">docker</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/debian">Debian</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/proxmox">Proxmox</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/servidor">servidor</a></li>
                   <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/sistemas">Sistemas</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/virtualizacion">virtualizacion</a></li>
                 </ul>
               </div>
             </div>
-            <!--/ Post-box End /-->
-            <!--/ box-comments Star /-->
             <div class="box-comments disqus">
               <div class="title-box-2">
                 <h4 class="title-comments title-left">Comparte tu Opinión</h4>
@@ -193,28 +205,20 @@
               <div id="disqus_thread"></div>
               <noscript>Por favor acive javascript para un correcto funcionamiento.</noscript>
             </div>
-            <!--/ box-comments End /-->
-            <!--/ form-comments Star /-->
-            <!--/ form-comments End /						-->
           </div>
           <div class="col-md-4">
-            <!--/ sidebar-search Star /-->
-            <!--/ sidebar-search End /-->
-            <!--/ sidebar-recents Star /-->
             <div class="widget-sidebar">
               <h5 class="sidebar-title">Last-Posts</h5>
               <div class="sidebar-content">
                 <ul class="list-sidebar">
-                  <li><a href="/blog/git-de-que-va-instalacion-y-uso-basico">Git: De que va, instalación y uso básico</a></li>
-                  <li><a href="/blog/primeros-pasos-en-gitlab-configuracion-ssh-y-keys-rsa-y-gpg">Primeros pasos en Gitlab: Configuración ssh y keys rsa y gpg</a></li>
-                  <li><a href="/blog/instalacion-de-proxmox-ve-sobre-debian-buster">Instalación de Proxmox VE sobre Debian Buster</a></li>
-                  <li><a href="/blog/instalacion-de-gitlab-en-debian">Instalación de GitLab CE</a></li>
+                  <li><a href="/blog/git-instalacion-y-uso-basico">Git: Instalación y uso básico</a></li>
+                  <li><a href="/blog/gitlab-ssh-keys-rsa-y-gpg">Gitlab: ssh, keys rsa y gpg</a></li>
+                  <li><a href="/blog/proxmox-ve-instalacion">Proxmox VE: Instalación</a></li>
+                  <li><a href="/blog/gitlab-ce-instalacion">GitLab CE: Instalación</a></li>
                   <li><a href="/blog/presentacion-de-esta-web">Presentación de esta Web</a></li>
                 </ul>
               </div>
             </div>
-            <!--/ sidebar-recents End /-->
-            <!--/ sidebar-archives Star /-->
             <div class="widget-sidebar">
               <h5 class="sidebar-title">sections</h5>
               <div class="sidebar-content">
@@ -251,8 +255,6 @@
                 </ul>
               </div>
             </div>
-            <!--/ sidebar-archives End /-->
-            <!--/ sidebar-tags Star /-->
             <div class="widget-sidebar widget-tags">
               <h5 class="sidebar-title">Tags</h5>
               <div class="sidebar-content">
@@ -282,16 +284,12 @@
                 </ul>
               </div>
             </div>
-            <!--/ sidebar-tags End /-->
           </div>
         </div>
       </div>
     </section>
-    <!--/ Section Blog-Single End /-->
-    <!--/ Section Contact-Footer Star /-->
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/overlay-bg.jpg)">
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
-      <!--/ footer Start /-->
       <footer>
         <div class="container">
           <div class="row">
@@ -313,11 +311,8 @@
           </div>
         </div>
       </footer>
-      <!--/ footer End /-->
-    </section>
-    <!--/ Section Contact-footer End /--><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
+    </section><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
     <div id="preloader"></div>
-    <!--/ Scripts start /-->
     <!-- JavaScript Libraries -->
     <script src="../assets/lib/jquery/jquery.min.js"></script>
     <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
@@ -334,6 +329,5 @@
     <!-- Template Main Javascript File -->
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/disqus.js"></script>
-    <!--/ Scripts end /-->
   </body>
 </html>
