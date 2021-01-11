@@ -26,15 +26,18 @@ function apiGetBlog(loquequiero) {
 		};
 	});
 }
+if (window.location.pathname !== '/') {
+	updateDate();
+}
 //- peticion repositorios publicos de mi github
-if (window.location.pathname == '/') {
+/* if (window.location.pathname == '/') {
 	apiGetBlog('https://api.github.com/users/itluismc')
 		.then((resultado) => {
 			var objetivo = document.getElementById('repos');
 			let numero = resultado.public_repos;
 			objetivo.innerHTML = numero;
 		})
-}
+} */
 
 (function ($) {
 	"use strict";
