@@ -2,20 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>luismc.es | Nginx</title>
+    <title>luismc.es | GitLab: Raspberry Pi 4</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="Debian,Gitlab,Instalaciones,raspberry pi 4" name="keywords">
+    <meta content="Articulo sobre la instalación de Gitlab en Raspberry Pi 4 con RaspberryPi OS,
+este ultimo sistema basado en Debian." name="description">
     <meta name="author" content="BootstrapMade">
     <meta name="copyright" content="Propietario del copyright">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
-    <link href="../../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../assets/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="../../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="../../assets/css/style.css" rel="stylesheet">
-    <link href="../../assets/css/custom.css" rel="stylesheet">
+    <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
@@ -28,17 +31,16 @@
         </div>
       </div>
     </nav>
-    <div class="intro intro-single route bg-image" style="background-image: url(../../assets/img/F73.jpg)">
+    <div class="intro intro-single route bg-image" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
           <div class="container">
-            <h2 class="intro-title mb-4">Skill: Nginx</h2>
+            <h2 class="intro-title mb-4">GitLab: Raspberry Pi 4</h2>
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Blog</a></li>
-              <li class="breadcrumb-item"><a href="#">skill</a></li>
-              <li class="breadcrumb-item active">Nginx</li>
+              <li class="breadcrumb-item active">GitLab: Raspberry Pi 4</li>
             </ol>
           </div>
         </div>
@@ -49,18 +51,141 @@
         <div class="row">
           <div class="col-md-8">
             <div class="post-box">
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/gitlab-raspberry-pi-4/gitlab-raspberry-pi-4.png" alt="Imagen destacada de GitLab: Raspberry Pi 4"></div>
               <div class="post-meta">
-                <h1 class="article-title">Nginx</h1>
-                <blockquote>Nginx es un servidor web/proxy inverso ligero de alto rendimiento, proxy para
-protocolos de correo electrónico (IMAP/POP3) y multiplataforma. Wikipedia.</blockquote>
-                <div class="post-meta">
-                  <ul>
-                    <li><a href="/blog/presentacion-de-esta-web">Presentación de esta Web</a></li>
-                    <li> <span>26 de Noviembre del 2020</span></li>
-                  </ul>
-                  <div class="article-content">Presentación de esta web como proyecto profesional y personal.</div>
-                </div>
+                <h1 class="article-title">GitLab: Raspberry Pi 4</h1>
+                <ul>
+                  <li><span class="ion-ios-person"></span> <a href="/">luismc</a></li>
+                  <li> <span>12 de Enero del 2021</span></li>
+                </ul>
               </div>
+              <div class="article-content">
+<p>La instalación de gitlab en raspberry pi 4 no difiere mucho de la otra que realice en este post, siempre que se haga en RaspberryPi OS. Las diferencias con aquel serán de las que escriba aquí.</p>
+
+
+
+<p>En cuanto su rendimiento he de decir que con esta configuración se mueve muy bien en un entorno domestico, por lo que para mí y mis proyectos estoy muy contento.</p>
+
+
+
+<p>Instalación en Raspberry:</p>
+
+
+
+<pre class="wp-block-code"><code>sudo apt-get install curl openssh-server ca-certificates apt-transport-https perl postfix</code></pre>
+
+
+
+<p>A las preguntas de postfix en caso de duda responder &#8216;sitio de internet&#8217;.</p>
+
+
+
+<pre class="wp-block-code"><code>sudo curl -sS https://packages.gitlab.com/install/repositories/gitlab/raspberry-pi2/script.deb.sh | sudo bash</code></pre>
+
+
+
+<p>Si vamos a utilizar certificados auto-firmados no instalamos con la variable &#8216;EXTERNAL_URL&#8217;.</p>
+
+
+
+<pre class="wp-block-code"><code>sudo EXTERNAL_URL="https://gitlab.example.com" apt-get install gitlab-ce</code></pre>
+
+
+
+<p>Realizar los pasos de la documentación para reducir procesos, editando </p>
+
+
+
+<pre class="wp-block-code"><code>nano /etc/gitlab/gitlab.rb</code></pre>
+
+
+
+<ul><li>Reducir procesos:</li></ul>
+
+
+
+<pre id="block-a441f633-7909-47dd-8f21-8cc05a2d1086" class="wp-block-code"><code># Reduce the number of running workers to the minimum in order to reduce memory usage<br>puma&#91;'worker_processes'] = 2<br>sidekiq&#91;'concurrency'] = 9<br># Turn off monitoring to reduce idle cpu and disk usage<br>prometheus_monitoring&#91;'enable'] = false</code></pre>
+
+
+
+<ul><li>Utilizar un disco externo en lugar de la micro-sd, para ello buscamos la siguiente sección: </li></ul>
+
+
+
+<pre class="wp-block-code"><code>### For setting up different data storing directory
+###! Docs: https://docs.gitlab.com/omnibus/settings/configuration.html#storing-git-data-in-an-alternative-directory
+###! **If you want to use a single non-default directory to store git data use a
+###!   path that doesn't contain symlinks.**
+# git_data_dirs({
+#   "default" =&gt; {
+#     "path" =&gt; "/mnt/nfs-01/git-data"
+#    }
+# })</code></pre>
+
+
+
+<ul><li>Configurar y aumentar la swap:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>sudo dphys-swapfile swapoff</code></pre>
+
+
+
+<pre class="wp-block-code"><code>sudo nano /etc/dphys-swapfile</code></pre>
+
+
+
+<pre class="wp-block-code"><code># UBICACIÓN DEL FICHERO
+#CONF_SWAPFILE=/var/swap
+
+# TAMAÑO
+CONF_SWAPSIZE=100</code></pre>
+
+
+
+<pre class="wp-block-code"><code>sudo dphys-swapfile setup &amp;&amp; sudo dphys-swapfile swapon</code></pre>
+
+
+
+<ul><li>El ultimo punto seria el de externalizar servicios, como el de la base de datos, desde la siguiente sección:</li></ul>
+
+
+
+<pre class="wp-block-code"><code># Disable the built-in Postgres
+postgresql&#91;'enable'] = false
+
+# Fill in the connection details for database.yml
+gitlab_rails&#91;'db_adapter'] = 'postgresql'
+gitlab_rails&#91;'db_encoding'] = 'utf8'
+gitlab_rails&#91;'db_host'] = '127.0.0.1'
+gitlab_rails&#91;'db_port'] = 5432
+gitlab_rails&#91;'db_username'] = 'USERNAME'
+gitlab_rails&#91;'db_password'] = 'PASSWORD'</code></pre>
+
+
+
+<p>Después de las configuraciones ya podremos ejecutar:</p>
+
+
+
+<pre class="wp-block-code"><code>sudo gitlab-ctl reconfigure</code></pre>
+</div>
+              <div class="post-meta">
+                <ul>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/debian">Debian</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/gitlab">Gitlab</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/instalaciones">Instalaciones</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/raspberry-pi-4">raspberry pi 4</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="box-comments disqus">
+              <div class="title-box-2">
+                <h4 class="title-comments title-left">Comparte tu Opinión</h4>
+              </div>
+              <div id="disqus_thread"></div>
+              <noscript>Por favor acive javascript para un correcto funcionamiento.</noscript>
             </div>
           </div>
           <div class="col-md-4">
@@ -148,7 +273,7 @@ protocolos de correo electrónico (IMAP/POP3) y multiplataforma. Wikipedia.</blo
         </div>
       </div>
     </section>
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../../assets/img/F73.jpg)">
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
       <footer>
         <div class="container">
@@ -174,19 +299,20 @@ protocolos de correo electrónico (IMAP/POP3) y multiplataforma. Wikipedia.</blo
     </section><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
     <div id="preloader"></div>
     <!-- JavaScript Libraries -->
-    <script src="../../assets/lib/jquery/jquery.min.js"></script>
-    <script src="../../assets/lib/jquery/jquery-migrate.min.js"></script>
-    <script src="../../assets/lib/popper/popper.min.js"></script>
-    <script src="../../assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/lib/easing/easing.min.js"></script>
-    <script src="../../assets/lib/counterup/jquery.waypoints.min.js"></script>
-    <script src="../../assets/lib/counterup/jquery.counterup.js"></script>
-    <script src="../../assets/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../../assets/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="../../assets/lib/typed/typed.min.js"></script>
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../assets/lib/popper/popper.min.js"></script>
+    <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/lib/easing/easing.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.counterup.js"></script>
+    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../assets/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../assets/lib/typed/typed.min.js"></script>
     <!-- Contact Form JavaScript File -->
-    <script src="../../assets/contactform/contactform.js"></script>
+    <script src="../assets/contactform/contactform.js"></script>
     <!-- Template Main Javascript File -->
-    <script src="../../assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/disqus.js"></script>
   </body>
 </html>

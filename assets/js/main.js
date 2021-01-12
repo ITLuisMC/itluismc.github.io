@@ -26,9 +26,9 @@ function apiGetBlog(loquequiero) {
 		};
 	});
 }
-if (window.location.pathname !== '/') {
+/* if (window.location.pathname != '/' || window.location.pathname != '/index' || window.location.pathname != '/index.html') {
 	updateDate();
-}
+} */
 //- peticion repositorios publicos de mi github
 /* if (window.location.pathname == '/') {
 	apiGetBlog('https://api.github.com/users/itluismc')
