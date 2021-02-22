@@ -23,3 +23,16 @@ pre {
 .intro{
     color: #4e4e4e;
 }
+
+.miFooter {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.socials {
+    padding: 0 0;
+    margin-bottom: 1rem;
+}
+.miButton a{
+    color: aliceblue;
+}

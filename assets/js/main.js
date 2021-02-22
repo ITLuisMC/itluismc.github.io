@@ -5,7 +5,7 @@ function updateDate() {
 	var spanD = document.getElementById('spanDate');
 	spanD.innerHTML = anio;
 }
-// updateDate();
+updateDate();
 //- repos
 function apiGetBlog(loquequiero) {
 	var req = new XMLHttpRequest();
