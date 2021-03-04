@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <title>luismc.es | Docker: Procesos de instalación</title>
@@ -7,8 +7,8 @@
     <meta content="docker,GNU-Linux,GNU/Debian,QubesOS,raspberry pi,RaspberryOS" name="keywords">
     <meta content="Pequeño articulo de instalación de Docker en los diferentes sistemas y
 arquitecturas que utilizo." name="description">
-    <meta name="author" content="BootstrapMade">
-    <meta name="copyright" content="Propietario del copyright">
+    <meta name="author" content="Luis Martínez">
+    <meta name="copyright" content="Luis Martínez">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
     <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -72,7 +72,7 @@ arquitecturas que utilizo." name="description">
 
 
 
-<pre id="block-1a1f12d9-5f50-4eb8-9933-2baf9ec65c15" class="wp-block-code"><code>apt-get update &amp;&amp; apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y</code></pre>
+<pre><code data-language="shell">apt-get update &amp;&amp; apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y</code></pre>
 
 
 
@@ -122,10 +122,12 @@ chmod +x /usr/local/bin/docker-compose</code></pre>
 
 
 
-<pre class="wp-block-code"><code>{
-"data-root": "/nueva/ubicación/docker",
-"storage-driver": "overlay2"
-}</code></pre>
+<pre><code>
+{
+    "data-root": "/nueva/ubicación/docker",
+    "storage-driver": "overlay2"
+}
+</code></pre>
 
 
 
@@ -196,7 +198,7 @@ chmod +x /usr/local/bin/docker-compose</code></pre>
           </div>
           <div class="col-md-4">
             <div class="widget-sidebar">
-              <h5 class="sidebar-title">Last-Posts</h5>
+              <h5 class="sidebar-title">Ultimos Posts</h5>
               <div class="sidebar-content">
                 <ul class="list-sidebar">
                   <li><a href="/blog/docker-procesos-de-instalacion">Docker: Procesos de instalación</a></li>

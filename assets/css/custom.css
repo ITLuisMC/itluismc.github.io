@@ -36,3 +36,7 @@ pre {
 .miButton a{
     color: aliceblue;
 }
+
+.cover {
+	background-image: linear-gradient(rgba(0,120,255,.5), rgba(0,120,255,.5)),url("/assets/img/F73.jpg");
+}
