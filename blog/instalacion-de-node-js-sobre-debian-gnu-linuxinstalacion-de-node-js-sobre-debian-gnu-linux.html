@@ -2,20 +2,23 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>luismc.es | servidor</title>
+    <title>luismc.es | Instalación de Node JS sobre Debian GNU/Linux</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="Debian,Desarrollo,GNU-Linux,javascript,nodejs" name="keywords">
+    <meta content="Chuletita de instalación de nodejs para Sistemas Debian GNU/Linux con la que
+instalarlo tambien en el home del usuario." name="description">
     <meta name="author" content="BootstrapMade">
     <meta name="copyright" content="BootstrapMade">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
-    <link href="../../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../assets/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="../../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="../../assets/css/style.css" rel="stylesheet">
-    <link href="../../assets/css/custom.css" rel="stylesheet">
+    <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
@@ -28,17 +31,16 @@
         </div>
       </div>
     </nav>
-    <div class="intro intro-single route bg-image" style="background-image: url(../../assets/img/F73.jpg)">
+    <div class="intro intro-single route bg-image" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
           <div class="container">
-            <h2 class="intro-title mb-4">Etiqueta: servidor</h2>
+            <h2 class="intro-title mb-4">Instalación de Node JS sobre Debian GNU/Linux</h2>
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Blog</a></li>
-              <li class="breadcrumb-item"><a href="#">tag</a></li>
-              <li class="breadcrumb-item active">servidor</li>
+              <li class="breadcrumb-item active">Instalación de Node JS sobre Debian GNU/Linux</li>
             </ol>
           </div>
         </div>
@@ -49,18 +51,106 @@
         <div class="row">
           <div class="col-md-8">
             <div class="post-box">
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/instalacion-de-node-js-sobre-debian-gnu-linuxinstalacion-de-node-js-sobre-debian-gnu-linux/instalacion-de-node-js-sobre-debian-gnu-linuxinstalacion-de-node-js-sobre-debian-gnu-linux.png" alt="Imagen destacada de Instalación de Node JS sobre Debian GNU/Linux"></div>
               <div class="post-meta">
-                <h1 class="article-title">servidor</h1>
-                <blockquote></blockquote>
-                <div class="post-meta">
-                  <ul>
-                    <li><a href="/blog/proxmox-ve-instalacion">Proxmox VE: Instalación</a></li>
-                    <li> <span>04 de Diciembre del 2020</span></li>
-                  </ul>
-                  <div class="article-content">Articulo sobre la instalación de Proxmox VE, un entorno de virtualización
-opensource.</div>
-                </div>
+                <h1 class="article-title">Instalación de Node JS sobre Debian GNU/Linux</h1>
+                <ul>
+                  <li><span class="ion-ios-person"></span> <a href="/">luismc</a></li>
+                  <li> <span>19 de Octubre del 2021</span></li>
+                </ul>
               </div>
+              <div class="article-content">
+<p>En esta «chuleta» compartiré la instalación de <a href="https://www.luismc.es/blog/skills/nodejs">NodeJS</a> que utilizo en mi equipo de desarrollo.</p>
+
+
+
+<p>A falta de un ratito para automatizar el entorno de desarrollo con mi propia imagen docker esta instalación no me ha dado ningún quebradero de cabeza.</p>
+
+
+
+<p>Además como punto fuerte de instalarlo en el home de tu usuario se incluirá perfectamente en los backups de tu home por lo que a falta de mejorarlo, obviamente la recomiendo.</p>
+
+
+
+<pre class="wp-block-code"><code># OPCIONAL PERO RECOMENDADO
+apt-get install gcc g++ make
+
+# Usando sudo
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Usando root
+curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+apt-get install -y nodejs</code></pre>
+
+
+
+<p>INTALAR PARA USUARIO:</p>
+
+
+
+<pre class="wp-block-preformatted">mkdir ~/.npm ~/.npm/lib ~/.npm/bin ~/.npm/cache<br>npm config set prefix ~/.npm &amp;&amp; npm config get prefix<br>npm config set cache ~/.npm/cache &amp;&amp; npm config get cache</pre>
+
+
+
+<p>Editamos «~/.bashrc»:</p>
+
+
+
+<pre class="wp-block-preformatted">NPM config' &gt;&gt; ~/.bashrc
+#Añadir el directorio raíz a la variable de entorno NODE_PATH:
+export NODE_PATH=~/.npm/lib/node_modules:$NODE_PATH
+#Añadir el directorio binario a la variable de entorno PATH:
+export PATH=~/.npm/bin:$PATH</pre>
+
+
+
+<p>Cargamos variables de entorno:</p>
+
+
+
+<pre class="wp-block-preformatted">source ~/.bashrc &amp;&amp; echo $NODE_PATH &amp;&amp; echo $PATH</pre>
+
+
+
+<p>Seteamos nuevas ubicaciones:</p>
+
+
+
+<pre class="wp-block-preformatted">npm prefix -g &amp;&amp; npm root -g &amp;&amp; npm bin -g &amp;&amp; which npm</pre>
+
+
+
+<p>Instalamos npm en nueva ubicación, chequeamos y actualizamos por si acaso:</p>
+
+
+
+<pre class="wp-block-preformatted">npm install -g npm &amp;&amp; which npm &amp;&amp; npm --version &amp;&amp; which npm &amp;&amp; npm i npm@latest -g</pre>
+
+
+
+<p>A partir de este momento todos los archivos npm que instalemos y demás configuraciones npm se guardaran en la carpeta oculta «~/.npm» en nuestro home, además de poder usar node y npm sin necesidad de permisos administrativos.</p>
+
+
+
+<p>Saludos y al tran tran.</p>
+</div>
+              <div class="post-meta">
+                <ul>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/debian">Debian</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/desarrollo">Desarrollo</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/gnu-linux">GNU-Linux</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/javascript">javascript</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/nodejs">nodejs</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="box-comments disqus">
+              <div class="title-box-2">
+                <h4 class="title-comments title-left">Comparte tu Opinión</h4>
+              </div>
+              <div id="disqus_thread"></div>
+              <noscript>Por favor acive javascript para un correcto funcionamiento.</noscript>
             </div>
           </div>
           <div class="col-md-4">
@@ -160,7 +250,7 @@ opensource.</div>
         </div>
       </div>
     </section>
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../../assets/img/F73.jpg)">
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
       <footer>
         <div class="container">
@@ -178,19 +268,20 @@ opensource.</div>
     </section><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
     <div id="preloader"></div>
     <!-- JavaScript Libraries -->
-    <script src="../../assets/lib/jquery/jquery.min.js"></script>
-    <script src="../../assets/lib/jquery/jquery-migrate.min.js"></script>
-    <script src="../../assets/lib/popper/popper.min.js"></script>
-    <script src="../../assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/lib/easing/easing.min.js"></script>
-    <script src="../../assets/lib/counterup/jquery.waypoints.min.js"></script>
-    <script src="../../assets/lib/counterup/jquery.counterup.js"></script>
-    <script src="../../assets/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../../assets/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="../../assets/lib/typed/typed.min.js"></script>
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../assets/lib/popper/popper.min.js"></script>
+    <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/lib/easing/easing.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.counterup.js"></script>
+    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../assets/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../assets/lib/typed/typed.min.js"></script>
     <!-- Contact Form JavaScript File -->
-    <script src="../../assets/contactform/contactform.js"></script>
+    <script src="../assets/contactform/contactform.js"></script>
     <!-- Template Main Javascript File -->
-    <script src="../../assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/disqus.js"></script>
   </body>
 </html>
