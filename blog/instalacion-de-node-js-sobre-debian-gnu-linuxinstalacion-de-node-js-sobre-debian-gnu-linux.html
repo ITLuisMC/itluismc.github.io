@@ -60,15 +60,23 @@ instalarlo tambien en el home del usuario." name="description">
                 </ul>
               </div>
               <div class="article-content">
-<p>En esta «chuleta» compartiré la instalación de <a href="https://www.luismc.es/blog/skills/nodejs">NodeJS</a> que utilizo en mi equipo de desarrollo.</p>
+<p>En esta &#8216;chuleta&#8217; compartiré la instalación de <a href="https://www.luismc.es/blog/skills/nodejs">NodeJS</a> que utilizo en mi equipo de desarrollo.</p>
 
 
 
-<p>A falta de un ratito para automatizar el entorno de desarrollo con mi propia imagen docker esta instalación no me ha dado ningún quebradero de cabeza.</p>
+<p>A falta de un ratito para automatizar el entorno de desarrollo con mi propia imagen docker, esta instalación no me ha dado ningún quebradero de cabeza.</p>
 
 
 
-<p>Además como punto fuerte de instalarlo en el home de tu usuario se incluirá perfectamente en los backups de tu home por lo que a falta de mejorarlo, obviamente la recomiendo.</p>
+<p>Además como punto fuerte de instalar npm en el home de tu usuario se incluirá perfectamente en los backups de tu cuenta, por lo que a falta de mejorarlo, obviamente la recomiendo.</p>
+
+
+
+<h2>Instalación de nodejs</h2>
+
+
+
+<p>Como siempre siguiendo la <a href="https://nodejs.org/es/download/package-manager/" target="_blank" rel="noreferrer noopener nofollow">documentación oficial</a> y dependiendo de tu distribución, en este caso Debian, versión LTS del momento y desde los repositorios:</p>
 
 
 
@@ -85,7 +93,11 @@ apt-get install -y nodejs</code></pre>
 
 
 
-<p>INTALAR PARA USUARIO:</p>
+<h2>INSTALAR NPM EN EL HOME DEL USUARIO:</h2>
+
+
+
+<p>Con estos pasos modificaremos la configuración del usuario y sus variables de entorno, con lo que conseguiremos tener nuestra propia versión de npm en nuestro home pudiendo gestionarlo sin permisos administrativos.</p>
 
 
 
@@ -93,7 +105,7 @@ apt-get install -y nodejs</code></pre>
 
 
 
-<p>Editamos «~/.bashrc»:</p>
+<p>Editamos &#8216;~/.bashrc&#8217;:</p>
 
 
 
