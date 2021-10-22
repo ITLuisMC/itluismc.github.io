@@ -2,20 +2,22 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>luismc.es | raspberry pi 4</title>
+    <title>luismc.es | Instalación OpenMediaVault</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="Debian,GNU-Linux,GNU/Debian,NAS,openmediavault,servidor" name="keywords">
+    <meta content="Instalación de Openmediavault. Sistema NAS libre y gratuito." name="description">
     <meta name="author" content="BootstrapMade">
     <meta name="copyright" content="BootstrapMade">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
     <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
-    <link href="../../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../assets/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="../../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="../../assets/css/style.css" rel="stylesheet">
-    <link href="../../assets/css/custom.css" rel="stylesheet">
+    <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
@@ -28,17 +30,16 @@
         </div>
       </div>
     </nav>
-    <div class="intro intro-single route bg-image" style="background-image: url(../../assets/img/F73.jpg)">
+    <div class="intro intro-single route bg-image" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
           <div class="container">
-            <h2 class="intro-title mb-4">Etiqueta: raspberry pi 4</h2>
+            <h2 class="intro-title mb-4">Instalación OpenMediaVault</h2>
             <ol class="breadcrumb d-flex justify-content-center">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Blog</a></li>
-              <li class="breadcrumb-item"><a href="#">tag</a></li>
-              <li class="breadcrumb-item active">raspberry pi 4</li>
+              <li class="breadcrumb-item active">Instalación OpenMediaVault</li>
             </ol>
           </div>
         </div>
@@ -49,18 +50,90 @@
         <div class="row">
           <div class="col-md-8">
             <div class="post-box">
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/instalacion-openmediavault/instalacion-openmediavault.png" alt="Imagen destacada de Instalación OpenMediaVault"></div>
               <div class="post-meta">
-                <h1 class="article-title">raspberry pi 4</h1>
-                <blockquote></blockquote>
-                <div class="post-meta">
-                  <ul>
-                    <li><a href="/blog/gitlab-raspberry-pi-4">GitLab: Raspberry Pi 4</a></li>
-                    <li> <span>12 de Enero del 2021</span></li>
-                  </ul>
-                  <div class="article-content">Articulo sobre la instalación de Gitlab en Raspberry Pi 4 con RaspberryPi OS,
-este ultimo sistema basado en Debian.</div>
-                </div>
+                <h1 class="article-title">Instalación OpenMediaVault</h1>
+                <ul>
+                  <li><span class="ion-ios-person"></span> <a href="/">luismc</a></li>
+                  <li> <span>22 de Octubre del 2021</span></li>
+                </ul>
               </div>
+              <div class="article-content">
+<p>Openmediavault es un software para sistemas basados en <a href="https://www.luismc.es/blog/skills/debian-gnu-linux">Debian</a>, con el que podremos montar nuestro propio NAS con la configuración hardware de nuestra casi total elección.</p>
+
+
+
+<p>Los requisitos mínimos actualmente son:</p>
+
+
+
+<ul><li>Procesador x86 de 64 bits o procesadores ARM compatibles.</li><li>1 GB de memoria RAM.</li><li>Un disco para el sistema de al menos 4 GB.</li><li>Uno o más discos para las necesidades de almacenamiento.</li></ul>
+
+
+
+<p>Hay dos métodos de instalación. La primera mediante imagen ISO pre-configurada y la segunda mediante script.</p>
+
+
+
+<p>La primera no tiene más misterio que la típica instalación desde cd/usb.</p>
+
+
+
+<p>La segunda es desde un sistema previamente instalado ejecutar un script facilitado por los desarrolladores para instalar el software sobre el.</p>
+
+
+
+<p>La principal diferencia y ventaja de este ultimo método es que te servirá para instalar openmediavault y los omv-extras.</p>
+
+
+
+<p>Esto mejora muchísimo las capacidades del sistema con plugins adicionales y la posibilidad de instalar Docker en el a golpe de clic entre otros.</p>
+
+
+
+<p>También mencionar que este script es el método recomendado para equipos Raspberry.</p>
+
+
+
+<p>Todo lo anterior con una sola linea de terminal, lo que demuestra el gran trabajo del equipo de desarrolladores.</p>
+
+
+
+<p>INSTALACIÓN OPENMEDIAVAULT MEDIANTE SCRIPT</p>
+
+
+
+<pre class="wp-block-preformatted">sudo wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash</pre>
+
+
+
+<p>Saludos y al tran tran.</p>
+
+
+
+<p>Referencias:</p>
+
+
+
+<ul><li><a href="https://www.openmediavault.org/" target="_blank" rel="noreferrer noopener nofollow">Pagina oficial</a>.</li><li><a href="https://github.com/OpenMediaVault-Plugin-Developers" target="_blank" rel="noreferrer noopener nofollow">Github desarrolladores</a>.</li><li><a href="https://github.com/OpenMediaVault-Plugin-Developers/installScript" target="_blank" rel="noreferrer noopener nofollow">Repositorio script</a>.</li></ul>
+</div>
+              <div class="post-meta">
+                <ul>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/debian">Debian</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/gnu-linux">GNU-Linux</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/gnu-debian">GNU/Debian</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/nas">NAS</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/openmediavault">openmediavault</a></li>
+                  <li><span class="ion-pricetag"></span> <a href="/blog/etiquetas/servidor">servidor</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="box-comments disqus">
+              <div class="title-box-2">
+                <h4 class="title-comments title-left">Comparte tu Opinión</h4>
+              </div>
+              <div id="disqus_thread"></div>
+              <noscript>Por favor acive javascript para un correcto funcionamiento.</noscript>
             </div>
           </div>
           <div class="col-md-4">
@@ -163,7 +236,7 @@ este ultimo sistema basado en Debian.</div>
         </div>
       </div>
     </section>
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../../assets/img/F73.jpg)">
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/F73.jpg)">
       <div class="overlay-mf"></div>
       <footer>
         <div class="container">
@@ -181,19 +254,20 @@ este ultimo sistema basado en Debian.</div>
     </section><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
     <div id="preloader"></div>
     <!-- JavaScript Libraries -->
-    <script src="../../assets/lib/jquery/jquery.min.js"></script>
-    <script src="../../assets/lib/jquery/jquery-migrate.min.js"></script>
-    <script src="../../assets/lib/popper/popper.min.js"></script>
-    <script src="../../assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/lib/easing/easing.min.js"></script>
-    <script src="../../assets/lib/counterup/jquery.waypoints.min.js"></script>
-    <script src="../../assets/lib/counterup/jquery.counterup.js"></script>
-    <script src="../../assets/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../../assets/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="../../assets/lib/typed/typed.min.js"></script>
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../assets/lib/popper/popper.min.js"></script>
+    <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/lib/easing/easing.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.counterup.js"></script>
+    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../assets/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../assets/lib/typed/typed.min.js"></script>
     <!-- Contact Form JavaScript File -->
-    <script src="../../assets/contactform/contactform.js"></script>
+    <script src="../assets/contactform/contactform.js"></script>
     <!-- Template Main Javascript File -->
-    <script src="../../assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/disqus.js"></script>
   </body>
 </html>
