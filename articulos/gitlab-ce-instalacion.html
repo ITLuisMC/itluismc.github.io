@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>luismc.es | GitLab CE: Instalación</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="Linux" name="keywords">
+    <meta content="Articulo sobre las diferentes formas de instalacion de GitLab CE." name="description">
+    <meta name="author" content="Luis Martínez">
+    <meta name="copyright" content="Luis Martínez">
+    <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
+    <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
+    <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2238338068344398" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+      <div class="container"><a class="navbar-brand js-scroll" href="/">LuisMC</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+        <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link js-scroll" href="/">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll" href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="intro intro-single route bg-image" style="background-image: url(../assets/img/F73.jpg)">
+      <div class="overlay-mf"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <h2 class="intro-title mb-4">GitLab CE: Instalación</h2>
+            <ol class="breadcrumb d-flex justify-content-center">
+              <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="#">Articulos</a></li>
+              <li class="breadcrumb-item active">GitLab CE: Instalación</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="blog-wrapper sect-pt4" id="blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="post-box">
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/gitlab-ce-instalacion/gitlab-ce-instalacion.png" alt="Imagen destacada de GitLab CE: Instalación"></div>
+              <div class="post-meta">
+                <h1 class="article-title">GitLab CE: Instalación</h1>
+                <ul>
+                  <li><span class="ion-ios-person"></span> <a href="/">luismc</a></li>
+                  <li> <span>02 de Diciembre del 2020</span></li>
+                </ul>
+              </div>
+              <div class="article-content">
+<p>Últimamente estoy desarrollando mi propio flujo de trabajo. Y aunque aún me falta, quisiera integrarlo en un ambiente DevOps con GitLab CE en mi servidor de trabajo.</p>
+
+
+
+<p>GitLab parece que aparte de ser un lugar donde guardar y compartir tus repositorios también es una completa plataforma DevOps. Pudiendo crear tus propios Docker en ella, montar un registry, tareas para runners y desplegar tus apps y un largo etc.</p>
+
+
+
+<p>Por lo que en un futuro articulo me enfocare en la experiencia final, de como se integra todo y si realmente es lo que busco para automatizar lo automatizable.</p>
+
+
+
+<p>Mientras tanto, escribiré aquí como se realiza una instalación con certificados autofirmados en debian 10 y también lo propio usando Docker.</p>
+
+
+
+<p>No es muy complicado, realmente cada vez facilitan más la tarea. Por lo que siguiendo los pasos indicados en la documentación oficial, comenzaremos por instalar dependencias necesarias:</p>
+
+
+
+<pre class="wp-block-code"><code>apt install -y curl openssh-server ca-certificates postfix easy-rsa</code></pre>
+
+
+
+<p>Y también sus repositorios:</p>
+
+
+
+<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash</code></pre>
+
+
+
+<p id="block-0cb09119-e69f-4823-a97b-4c29640ba5f3">Si quisiéramos una instalación con certificados automáticos de Let&#8217;s Encrypt, ejecutaríamos el siguiente comando teniendo en cuenta de que el servidor entonces tendrá que estar accesible desde internet:</p>
+
+
+
+<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>EXTERNAL_URL="https://gitlab.example.com" apt install gitlab-ce</code></pre>
+
+
+
+<p>Si no y queremos configurar unos certificados autofirmados, tan solo ejecutamos:</p>
+
+
+
+<pre id="block-648a7270-1508-4497-95c5-cf4e53dc6506" class="wp-block-code"><code>apt install gitlab-ce</code></pre>
+
+
+
+<p>Para la configuración manual crearemos su directorio, generaremos unos certificados nuevos y le daremos los permisos adecuados:</p>
+
+
+
+<pre id="block-0cb09119-e69f-4823-a97b-4c29640ba5f3" class="wp-block-code"><code>mkdir -p /etc/gitlab/ssl &amp;&amp; cd /etc/gitlab/ssl/</code></pre>
+
+
+
+<pre id="block-d788d11d-e349-46e4-aedf-7c439d561dad" class="wp-block-code"><code>openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 -keyout gitlab.example.com.key -out gitlab.example.com.crt</code></pre>
+
+
+
+<pre id="block-f2016306-82ca-41bb-af38-27425ba9f11d" class="wp-block-code"><code>chmod 755 /etc/gitlab/ssl</code></pre>
+
+
+
+<p>Editaremos el fichero de configuración indicándole el fqdn del servidor:</p>
+
+
+
+<pre id="block-e4c6fd86-d350-4415-8c47-57bec5c77d6c" class="wp-block-code"><code>nano /etc/gitlab/gitlab.rb</code></pre>
+
+
+
+<p>Buscando la linea siguiente y dejándola con tu fdqn:</p>
+
+
+
+<pre id="block-29c88920-4251-45b1-b7d2-a1e77cffee85" class="wp-block-code"><code>external_url "https://gitlab.example.com"</code></pre>
+
+
+
+<p>Por último ya solo falta ejecutar la configuración del Gitlab para que lo configure y levante finalmente:</p>
+
+
+
+<pre id="block-edfbc14b-a8bf-4291-97a6-2e1e343f7251" class="wp-block-code"><code>gitlab-ctl reconfigure</code></pre>
+
+
+
+<p>Cuando termine si todo salio bien nos indicara que ya está disponible y que la primera visita a la url seteara el password root de la instancia.</p>
+
+
+
+<p>En cuanto a su instalación como contenedor Docker, aún más sencillo:</p>
+
+
+
+<pre class="wp-block-code"><code>docker run --detach --hostname gitlab.example.com --env GITLAB_OMNIBUS_CONFIG="external_url 'http://gitlab.example.com'; gitlab_rails&#91;'lfs_enabled'] = true;" --publish 443:443 --publish 80:80 --publish 222:22 --name migitlab --restart always --volume /ruta/guardar/config:/etc/gitlab --volume /ruta/guardar/logs:/var/log/gitlab --volume /ruta/guardar/data:/var/opt/gitlab gitlab/gitlab-ce:latest</code></pre>
+
+
+
+<p>Para más info pelearse con su documentación en <a href="https://docs.gitlab.com/omnibus/README.html">Docs-GitLab</a> y en <a href="https://hub.docker.com/r/gitlab/gitlab-ce/">docker-hub</a>. Por lo demás veremos que tal es GitLab y si hay amor.</p>
+
+
+
+<p>Saludosss.</p>
+</div>
+              <div class="post-meta">
+                <ul>
+                  <li><span class="ion-pricetag"></span> <a href="/etiquetas/linux">Linux</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">Ultimos Posts</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li><a href="/articulos/instalacion-openmediavault">Instalación OpenMediaVault</a></li>
+                  <li><a href="/articulos/node-js-sobre-debian">NodeJS sobre Debian</a></li>
+                  <li><a href="/articulos/acerca-de-wordpress">Acerca de WordPress</a></li>
+                  <li><a href="/articulos/docker-procesos-de-instalacion">Docker: Procesos de instalación</a></li>
+                  <li><a href="/articulos/gitlab-raspberry-pi-4">GitLab: Raspberry Pi 4</a></li>
+                  <li><a href="/articulos/git-instalacion-y-uso-basico">Git: Instalación y uso básico</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">secciones</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li><a href="/secciones/desarrollo">Desarrollo</a></li>
+                  <li><a href="/secciones/proyectos">Proyectos</a></li>
+                  <li><a href="/secciones/redes-y-sistemas">Redes y Sistemas</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">perfiles</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/perfiles/copywriter">Copywriter</a></li>
+                  <li><a href="/perfiles/integrador-de-sistemas">Integrador de Sistemas</a></li>
+                  <li><a href="/perfiles/web-developer">Web Developer</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">skills</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/skills/debian-gnu-linux">Debian GNU/Linux</a></li>
+                  <li><a href="/skills/docker-ce">Docker CE</a></li>
+                  <li><a href="/skills/git">Git</a></li>
+                  <li><a href="/skills/gitlab-ce">GitLab CE</a></li>
+                  <li><a href="/skills/javascript">Javascript</a></li>
+                  <li><a href="/skills/css">CSS</a></li>
+                  <li><a href="/skills/dev-ops">DevOps</a></li>
+                  <li><a href="/skills/github">GitHub</a></li>
+                  <li><a href="/skills/html">HTML</a></li>
+                  <li><a href="/skills/nodejs">NodeJS</a></li>
+                  <li><a href="/skills/wordpress">Wordpress</a></li>
+                  <li><a href="/skills/apache">Apache</a></li>
+                  <li><a href="/skills/bootstrap">Bootstrap</a></li>
+                  <li><a href="/skills/copywriting">Copywriting</a></li>
+                  <li><a href="/skills/gpg">GPG</a></li>
+                  <li><a href="/skills/gulp">Gulp</a></li>
+                  <li><a href="/skills/mysql">MySql</a></li>
+                  <li><a href="/skills/nginx">Nginx</a></li>
+                  <li><a href="/skills/openmediavault">OpenMediaVault</a></li>
+                  <li><a href="/skills/php">PHP</a></li>
+                  <li><a href="/skills/proxmox">Proxmox VE</a></li>
+                  <li><a href="/skills/pugjs">PugJS</a></li>
+                  <li><a href="/skills/ssh">SSH</a></li>
+                  <li><a href="/skills/windows">Windows</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">Etiquetas</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/etiquetas/debian">Debian</a></li>
+                  <li><a href="/etiquetas/linux">Linux</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/F73.jpg)">
+      <div class="overlay-mf"></div>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="copyright-box">
+                <div class="credits">
+                  <p class="copyright"><a href="https://www.luismc.es">Luis Martínez</a> - <span id="spanDate"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
+    <div id="preloader"></div>
+    <!-- JavaScript Libraries -->
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../assets/lib/popper/popper.min.js"></script>
+    <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/lib/easing/easing.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.counterup.js"></script>
+    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../assets/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../assets/lib/typed/typed.min.js"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="../assets/contactform/contactform.js"></script>
+    <!-- Template Main Javascript File -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/disqus.js"></script>
+  </body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>luismc.es | Git: Instalación y uso básico</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="Debian" name="keywords">
+    <meta content="Articulo acerca de Git, otro invento de Linus Torvalds y de su uso básico." name="description">
+    <meta name="author" content="Luis Martínez">
+    <meta name="copyright" content="Luis Martínez">
+    <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
+    <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
+    <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2238338068344398" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+      <div class="container"><a class="navbar-brand js-scroll" href="/">LuisMC</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+        <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link js-scroll" href="/">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll" href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="intro intro-single route bg-image" style="background-image: url(../assets/img/F73.jpg)">
+      <div class="overlay-mf"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <h2 class="intro-title mb-4">Git: Instalación y uso básico</h2>
+            <ol class="breadcrumb d-flex justify-content-center">
+              <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="#">Articulos</a></li>
+              <li class="breadcrumb-item active">Git: Instalación y uso básico</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="blog-wrapper sect-pt4" id="blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="post-box">
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/git-instalacion-y-uso-basico/git-instalacion-y-uso-basico.png" alt="Imagen destacada de Git: Instalación y uso básico"></div>
+              <div class="post-meta">
+                <h1 class="article-title">Git: Instalación y uso básico</h1>
+                <ul>
+                  <li><span class="ion-ios-person"></span> <a href="/">luismc</a></li>
+                  <li> <span>16 de Diciembre del 2020</span></li>
+                </ul>
+              </div>
+              <div class="article-content">
+<h3><strong>¿De que va?</strong></h3>
+
+
+
+<p>Git es un software de control de versiones que a día de hoy todo el mundillo de la ‘informática’ ya conoce y usa. O debería.</p>
+
+
+
+<p>Diseñado por Linus Torvalds, también conocido por iniciar y mantener el núcleo Linux. Ahí es ‘nada’.</p>
+
+
+
+<p>Básicamente y a ojo de buen cubero este software nos permite llevar un completo registro en la producción de software, permitiendo además la centralización de código de manera organizada para trabajos en proyectos de más de una persona.</p>
+
+
+
+<p>Cada commit y su posterior push podríamos llegar a considerarlo como un salvar la partida en la consola de toda la vida.</p>
+
+
+
+<p>Es tan importante en la vida de cualquier desarrollador de software que ha evolucionado a plataformas tan completas como Gitlab CE, las cuales ya se pueden considerar una abstracta fabrica de software. Llevando todo el proceso de creación de software, desde que entra la idea hasta que sale el producto.</p>
+
+
+
+<h3>Instalación</h3>
+
+
+
+<p>Su instalación en sistemas GNU/Linux no tiene más misterio que el uso de su gestor de paquetes. Soy usuario Debian GNU/Linux y es la forma que utilizo.</p>
+
+
+
+<p>Tanto en Mac como en Windows, con descargarte su binario correspondiente e instalarlo, lo tendrás en el equipo.</p>
+
+
+
+<h3>Configuración básica</h3>
+
+
+
+<p>Lo primero sera configurar las opciones globales con las que firmaras tus commits, las principales u obligatorias son nombre y email:</p>
+
+
+
+<ul><li>Nombre</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git config --global user.name "Pepe Botika"</code></pre>
+
+
+
+<ul><li>Email</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git config --global user.email pepebotika@evaristo.com</code></pre>
+
+
+
+<p>Los demás parámetros que son unos cuantos se pueden consultar en el caso Debian con el auto completado haciendo doble tab después de ‘–‘.</p>
+
+
+
+<p>Las demás como con todas las aplicaciones de software se conocen sobre todo con el uso, por lo que a modo de redondeo y chuleta estos son los básicos:</p>
+
+
+
+<ul><li>Clonar repositorio remoto:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git clone git@gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
+
+
+
+<ul><li>Añadir una fuente remota:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git remote add origin git@usuario.gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
+
+
+
+<ul><li>Seleccionar un origen remoto existente:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git remote set-url origin git@usuario.gitlab.company.com:usuario/nombre-repositorio.git</code></pre>
+
+
+
+<ul><li>Ver estado del proyecto, si hay commits pendientes, archivos sin seguimiento, etc:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git status</code></pre>
+
+
+
+<ul><li>Añadir todo el contenido nuevo/modificado al index para su posterior commit:</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git add --all</code></pre>
+
+
+
+<p>o selectivo con:</p>
+
+
+
+<pre class="wp-block-code"><code>git add fichero</code></pre>
+
+
+
+<ul><li>Procesar cambios con commit, aquí la bandera ‘-m’ se utiliza para seleccionar el mensaje descriptivo, ‘-a’ para todos los que ya se encuentran registrados en el index, por lo que nos ahorraríamos el ‘git add’ y ‘-S’ para firmar el commit con firmas GPG si estas están configuradas previamente.</li></ul>
+
+
+
+<pre class="wp-block-preformatted"><code>git commit -m "Algún mensaje descriptivo"</code><br><code>git commit -a -m "Algún mensaje descriptivo"</code><br><code>git commit -a -S -m "Algún mensaje descriptivo"</code></pre>
+
+
+
+<ul><li>Para subir todos los cambios de todas las ramas a su remoto utilizamos la bandera ‘–all’.</li></ul>
+
+
+
+<pre class="wp-block-code"><code>git push -u 'remoto' --all</code></pre>
+
+
+
+<p>o también selectivamente:</p>
+
+
+
+<pre class="wp-block-code"><code>git push -u 'remoto' 'rama'</code></pre>
+
+
+
+<p>Cambiar entre ramas con checkout, si añadimos ‘-b’ creamos la rama de no existir y sino solo nos desplazamos a ella:</p>
+
+
+
+<pre class="wp-block-preformatted"><code>git checkout otrarama</code><br><code>git checkout -b rama-nueva</code></pre>
+
+
+
+<p>Los demás comandos básicos a estas alturas son muy intuitivos, siendo branch para trabajar con las ramas y pull para descargar/actualizar los cambios de la rama remota en la local.</p>
+
+
+
+<p>Creo que con esto ya se puede empezar a gatear con los repositorios de nuestros proyectos. Para usos más avanzado solo su documentación y la experiencia la completaran.</p>
+
+
+
+<p>Saludos.</p>
+</div>
+              <div class="post-meta">
+                <ul>
+                  <li><span class="ion-pricetag"></span> <a href="/etiquetas/debian">Debian</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">Ultimos Posts</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li><a href="/articulos/instalacion-openmediavault">Instalación OpenMediaVault</a></li>
+                  <li><a href="/articulos/node-js-sobre-debian">NodeJS sobre Debian</a></li>
+                  <li><a href="/articulos/acerca-de-wordpress">Acerca de WordPress</a></li>
+                  <li><a href="/articulos/docker-procesos-de-instalacion">Docker: Procesos de instalación</a></li>
+                  <li><a href="/articulos/gitlab-raspberry-pi-4">GitLab: Raspberry Pi 4</a></li>
+                  <li><a href="/articulos/git-instalacion-y-uso-basico">Git: Instalación y uso básico</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">secciones</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li><a href="/secciones/desarrollo">Desarrollo</a></li>
+                  <li><a href="/secciones/proyectos">Proyectos</a></li>
+                  <li><a href="/secciones/redes-y-sistemas">Redes y Sistemas</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">perfiles</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/perfiles/copywriter">Copywriter</a></li>
+                  <li><a href="/perfiles/integrador-de-sistemas">Integrador de Sistemas</a></li>
+                  <li><a href="/perfiles/web-developer">Web Developer</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">skills</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/skills/debian-gnu-linux">Debian GNU/Linux</a></li>
+                  <li><a href="/skills/docker-ce">Docker CE</a></li>
+                  <li><a href="/skills/git">Git</a></li>
+                  <li><a href="/skills/gitlab-ce">GitLab CE</a></li>
+                  <li><a href="/skills/javascript">Javascript</a></li>
+                  <li><a href="/skills/css">CSS</a></li>
+                  <li><a href="/skills/dev-ops">DevOps</a></li>
+                  <li><a href="/skills/github">GitHub</a></li>
+                  <li><a href="/skills/html">HTML</a></li>
+                  <li><a href="/skills/nodejs">NodeJS</a></li>
+                  <li><a href="/skills/wordpress">Wordpress</a></li>
+                  <li><a href="/skills/apache">Apache</a></li>
+                  <li><a href="/skills/bootstrap">Bootstrap</a></li>
+                  <li><a href="/skills/copywriting">Copywriting</a></li>
+                  <li><a href="/skills/gpg">GPG</a></li>
+                  <li><a href="/skills/gulp">Gulp</a></li>
+                  <li><a href="/skills/mysql">MySql</a></li>
+                  <li><a href="/skills/nginx">Nginx</a></li>
+                  <li><a href="/skills/openmediavault">OpenMediaVault</a></li>
+                  <li><a href="/skills/php">PHP</a></li>
+                  <li><a href="/skills/proxmox">Proxmox VE</a></li>
+                  <li><a href="/skills/pugjs">PugJS</a></li>
+                  <li><a href="/skills/ssh">SSH</a></li>
+                  <li><a href="/skills/windows">Windows</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">Etiquetas</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/etiquetas/debian">Debian</a></li>
+                  <li><a href="/etiquetas/linux">Linux</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/F73.jpg)">
+      <div class="overlay-mf"></div>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="copyright-box">
+                <div class="credits">
+                  <p class="copyright"><a href="https://www.luismc.es">Luis Martínez</a> - <span id="spanDate"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
+    <div id="preloader"></div>
+    <!-- JavaScript Libraries -->
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../assets/lib/popper/popper.min.js"></script>
+    <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/lib/easing/easing.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.counterup.js"></script>
+    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../assets/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../assets/lib/typed/typed.min.js"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="../assets/contactform/contactform.js"></script>
+    <!-- Template Main Javascript File -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/disqus.js"></script>
+  </body>
+</html>

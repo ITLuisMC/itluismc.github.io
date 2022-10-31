@@ -20,7 +20,7 @@ pre {
     color: #17a2b8;
 }
 
-.intro{
+.intro {
     color: #4e4e4e;
 }
 
@@ -33,10 +33,15 @@ pre {
     padding: 0 0;
     margin-bottom: 1rem;
 }
-.miButton a{
+
+.miButton a {
     color: aliceblue;
 }
 
 .cobertura {
-	background-image: linear-gradient(rgba(0,120,255,.5), rgba(0,120,255,.5)),url("/assets/img/F73.jpg");
+    background-image: linear-gradient(rgba(0, 120, 255, .5), rgba(0, 120, 255, .5)), url("/assets/img/F73.jpg");
+}
+
+.introPages {
+    height: 0vh;
 }

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>luismc.es | Gitlab: ssh, keys rsa y gpg</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="Linux" name="keywords">
+    <meta content="Articulo sobre la configuración basica de gitlab para trabajar mediante
+certificados ssh y firmar tus commits" name="description">
+    <meta name="author" content="Luis Martínez">
+    <meta name="copyright" content="Luis Martínez">
+    <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="icon">
+    <link href="https://www.gravatar.com/avatar/cf6cadc533223a5247b6c08eccf992da.png?s=32" rel="apple-touch-icon">
+    <link href="../assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2238338068344398" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+      <div class="container"><a class="navbar-brand js-scroll" href="/">LuisMC</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+        <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link js-scroll" href="/">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll" href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="intro intro-single route bg-image" style="background-image: url(../assets/img/F73.jpg)">
+      <div class="overlay-mf"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <h2 class="intro-title mb-4">Gitlab: ssh, keys rsa y gpg</h2>
+            <ol class="breadcrumb d-flex justify-content-center">
+              <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="#">Articulos</a></li>
+              <li class="breadcrumb-item active">Gitlab: ssh, keys rsa y gpg</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="blog-wrapper sect-pt4" id="blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="post-box">
+              <div class="post-thumb"><img class="img-fluid" src="../assets/img/posts/gitlab-ssh-keys-rsa-y-gpg/gitlab-ssh-keys-rsa-y-gpg.png" alt="Imagen destacada de Gitlab: ssh, keys rsa y gpg"></div>
+              <div class="post-meta">
+                <h1 class="article-title">Gitlab: ssh, keys rsa y gpg</h1>
+                <ul>
+                  <li><span class="ion-ios-person"></span> <a href="/">luismc</a></li>
+                  <li> <span>08 de Diciembre del 2020</span></li>
+                </ul>
+              </div>
+              <div class="article-content">
+<p>Habiendo dado de alta nuestro usuario, tanto en una instancia local de Gitlab como en gitlab.com, el proceso es el mismo.</p>
+
+
+
+<h3>Certificados RSA</h3>
+
+
+
+<p>Para trabajar con git mediante certificados ssh, lo primero que deberemos hacer sera crear los certificados.</p>
+
+
+
+<p>En mi caso trabajo en Debian GNU/Linux y es el método sobre el que escribiré. Mi preferencia es la de crear certificados por usuario y sitio e intentar evitar la reutilización de certificados, pero al fin y al cabo para gustos los colores.</p>
+
+
+
+<p>Desde la terminal y con nuestro usuario de trabajo, realizaremos los siguientes pasos:</p>
+
+
+
+<p>Confirmación de ssh-agent corriendo en el sistema:</p>
+
+
+
+<pre class="wp-block-preformatted"><code>eval $(ssh-agent -s)</code></pre>
+
+
+
+<p>Creación del directorio especifico donde irán los certificados y desplazamiento al directorio en cuestión. Una vez dentro crearemos los nuevos certificados de tipo RSA.</p>
+
+
+
+<pre class="wp-block-preformatted">mkdir -p ~/.ssh/gitlab.company.com &amp;&amp; cd ~/.ssh/gitlab.company.com</pre>
+
+
+
+<pre class="wp-block-preformatted"><code>ssh-keygen -t rsa -b 2048 -C "email@example.com"</code></pre>
+
+
+
+<p>Nos creara dos certificados uno privado y otro publico. Ahora añadiremos la key privada a nuestro agente ssh.</p>
+
+
+
+<pre class="wp-block-preformatted"><code>ssh-add ~/.ssh/gitlab.company.com</code></pre>
+
+
+
+<p>Crearemos un fichero en &#8216;~/.ssh/config&#8217; con el siguiente contenido para decirle al agente que certificado usar con que servidor.</p>
+
+
+
+<pre class="wp-block-preformatted"># ejemplo con mismo nombre de usuario<br># GitLab.com<br>Host gitlab.com<br>  Preferredauthentications publickey<br>  IdentityFile ~/.ssh/<code>gitlab.company.com</code><br><br># con instancia privada de gitlab<br>Host gitlab.company.com<br>  Preferredauthentications publickey<br>  IdentityFile ~/.ssh/<code>gitlab.company.com</code><br></pre>
+
+
+
+<pre class="wp-block-preformatted"># ejemplo con diferente nombre de usuario<br># GitLab.com<br>Host usuario.gitlab.com<br>  Hostname gitlab.com<br>  Preferredauthentications publickey<br>  IdentityFile ~/.ssh/gitlab_com_rsa<br><br># con instancia privada de gitlab<br>Host usuario.gitlab.company.com<br>  Hostname gitlab.company.com<br>  Preferredauthentications publickey<br>  IdentityFile ~/.ssh/example_com_rsa<br></pre>
+
+
+
+<p>Copiamos la clave publica que hemos creado y la añadimos a nuestro usuario desde el panel de control del mismo en gitlab. Una vez hecho testeamos con:</p>
+
+
+
+<pre class="wp-block-preformatted"><code>ssh -T git@gitlab.com</code><br><br># ó<br><br><code>ssh -T git@</code>gitlab.company.com</pre>
+
+
+
+<p>Si pasa el test correctamente, ya podríamos trabajar a través de ssh utilizando la siguiente sintaxis de ejemplo:</p>
+
+
+
+<pre class="wp-block-preformatted">git remote add origin git@usuario.gitlab.company.com:usuario/nombre-repositorio.git</pre>
+
+
+
+<h3>Firmar commits con GPG</h3>
+
+
+
+<p>Creamos los certificados con el siguiente comando, respondiendo todo por defecto, excepto los datos personales y la longitud de la clave que la fijaremos en 4096:</p>
+
+
+
+<pre class="wp-block-preformatted">gpg --full-gen-key</pre>
+
+
+
+<p>Ahora buscaremos el id asociado a la clave:</p>
+
+
+
+<pre class="wp-block-preformatted">gpg --list-secret-keys --keyid-format LONG tuemail@exmple.com</pre>
+
+
+
+<p>Buscaremos la linea que comienza por ‘sec’ y copiaremos los números que siguen a ‘rsa4096/’ pero sin la fecha.</p>
+
+
+
+<p>Exportaremos la clave publica con el siguiente comando cuya salida sera la que copiemos en su apartado de nuestra cuenta de gitlab.</p>
+
+
+
+<pre class="wp-block-preformatted">gpg --armor --export id-anterior</pre>
+
+
+
+<p>Ese mismo id lo utilizaremos también para asociarlo a nuestro git y así poder utilizar la firma.</p>
+
+
+
+<pre class="wp-block-preformatted">git config --global user.signingkey id-anterior</pre>
+
+
+
+<p>Ahora utilizaríamos la bandera ‘-S’ en cada commit pero si preferimos podemos decirle a git que lo haga siempre con:</p>
+
+
+
+<pre class="wp-block-preformatted">git config --global commit.gpgsign true</pre>
+
+
+
+<p>Listo ahora cada commit que hagamos sera firmado y reconocido por gitlab como verificado.</p>
+
+
+
+<p>Para más info visitar su maravillosa <a href="https://docs.gitlab.com/">documentación</a>.</p>
+
+
+
+<p>Saludos.</p>
+</div>
+              <div class="post-meta">
+                <ul>
+                  <li><span class="ion-pricetag"></span> <a href="/etiquetas/linux">Linux</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">Ultimos Posts</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li><a href="/articulos/instalacion-openmediavault">Instalación OpenMediaVault</a></li>
+                  <li><a href="/articulos/node-js-sobre-debian">NodeJS sobre Debian</a></li>
+                  <li><a href="/articulos/acerca-de-wordpress">Acerca de WordPress</a></li>
+                  <li><a href="/articulos/docker-procesos-de-instalacion">Docker: Procesos de instalación</a></li>
+                  <li><a href="/articulos/gitlab-raspberry-pi-4">GitLab: Raspberry Pi 4</a></li>
+                  <li><a href="/articulos/git-instalacion-y-uso-basico">Git: Instalación y uso básico</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">secciones</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li><a href="/secciones/desarrollo">Desarrollo</a></li>
+                  <li><a href="/secciones/proyectos">Proyectos</a></li>
+                  <li><a href="/secciones/redes-y-sistemas">Redes y Sistemas</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">perfiles</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/perfiles/copywriter">Copywriter</a></li>
+                  <li><a href="/perfiles/integrador-de-sistemas">Integrador de Sistemas</a></li>
+                  <li><a href="/perfiles/web-developer">Web Developer</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">skills</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/skills/debian-gnu-linux">Debian GNU/Linux</a></li>
+                  <li><a href="/skills/docker-ce">Docker CE</a></li>
+                  <li><a href="/skills/git">Git</a></li>
+                  <li><a href="/skills/gitlab-ce">GitLab CE</a></li>
+                  <li><a href="/skills/javascript">Javascript</a></li>
+                  <li><a href="/skills/css">CSS</a></li>
+                  <li><a href="/skills/dev-ops">DevOps</a></li>
+                  <li><a href="/skills/github">GitHub</a></li>
+                  <li><a href="/skills/html">HTML</a></li>
+                  <li><a href="/skills/nodejs">NodeJS</a></li>
+                  <li><a href="/skills/wordpress">Wordpress</a></li>
+                  <li><a href="/skills/apache">Apache</a></li>
+                  <li><a href="/skills/bootstrap">Bootstrap</a></li>
+                  <li><a href="/skills/copywriting">Copywriting</a></li>
+                  <li><a href="/skills/gpg">GPG</a></li>
+                  <li><a href="/skills/gulp">Gulp</a></li>
+                  <li><a href="/skills/mysql">MySql</a></li>
+                  <li><a href="/skills/nginx">Nginx</a></li>
+                  <li><a href="/skills/openmediavault">OpenMediaVault</a></li>
+                  <li><a href="/skills/php">PHP</a></li>
+                  <li><a href="/skills/proxmox">Proxmox VE</a></li>
+                  <li><a href="/skills/pugjs">PugJS</a></li>
+                  <li><a href="/skills/ssh">SSH</a></li>
+                  <li><a href="/skills/windows">Windows</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">Etiquetas</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li><a href="/etiquetas/debian">Debian</a></li>
+                  <li><a href="/etiquetas/linux">Linux</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(../assets/img/F73.jpg)">
+      <div class="overlay-mf"></div>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="copyright-box">
+                <div class="credits">
+                  <p class="copyright"><a href="https://www.luismc.es">Luis Martínez</a> - <span id="spanDate"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section><a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
+    <div id="preloader"></div>
+    <!-- JavaScript Libraries -->
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../assets/lib/popper/popper.min.js"></script>
+    <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/lib/easing/easing.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="../assets/lib/counterup/jquery.counterup.js"></script>
+    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../assets/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../assets/lib/typed/typed.min.js"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="../assets/contactform/contactform.js"></script>
+    <!-- Template Main Javascript File -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/disqus.js"></script>
+  </body>
+</html>
