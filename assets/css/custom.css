@@ -45,3 +45,8 @@ pre {
 .introPages {
     height: 0vh;
 }
+
+.wp-block-image a img{
+    width: 100%;
+    height: auto;
+}
