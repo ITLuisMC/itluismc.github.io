@@ -11,9 +11,6 @@
           <author>Luis Martínez</author>
           <pubDate>"22 de Octubre del 2021"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"NodeJS sobre Debian"</title>
           <link>"https://luismc.es/articulos/node-js-sobre-debian"</link>
@@ -21,9 +18,6 @@
           <author>Luis Martínez</author>
           <pubDate>"19 de Octubre del 2021"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"Acerca de WordPress"</title>
           <link>"https://luismc.es/articulos/acerca-de-wordpress"</link>
@@ -31,9 +25,6 @@
           <author>Luis Martínez</author>
           <pubDate>"21 de Marzo del 2021"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"Docker: Procesos de instalación"</title>
           <link>"https://luismc.es/articulos/docker-procesos-de-instalacion"</link>
@@ -41,9 +32,6 @@
           <author>Luis Martínez</author>
           <pubDate>"22 de Febrero del 2021"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"GitLab: Raspberry Pi 4"</title>
           <link>"https://luismc.es/articulos/gitlab-raspberry-pi-4"</link>
@@ -51,9 +39,6 @@
           <author>Luis Martínez</author>
           <pubDate>"12 de Enero del 2021"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"Git: Instalación y uso básico"</title>
           <link>"https://luismc.es/articulos/git-instalacion-y-uso-basico"</link>
@@ -61,9 +46,6 @@
           <author>Luis Martínez</author>
           <pubDate>"16 de Diciembre del 2020"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"Gitlab: ssh, keys rsa y gpg"</title>
           <link>"https://luismc.es/articulos/gitlab-ssh-keys-rsa-y-gpg"</link>
@@ -71,9 +53,6 @@
           <author>Luis Martínez</author>
           <pubDate>"08 de Diciembre del 2020"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"Proxmox VE: Instalación"</title>
           <link>"https://luismc.es/articulos/proxmox-ve-instalacion"</link>
@@ -81,9 +60,6 @@
           <author>Luis Martínez</author>
           <pubDate>"04 de Diciembre del 2020"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"GitLab CE: Instalación"</title>
           <link>"https://luismc.es/articulos/gitlab-ce-instalacion"</link>
@@ -91,9 +67,6 @@
           <author>Luis Martínez</author>
           <pubDate>"02 de Diciembre del 2020"</pubDate>
        </item>
-       <title>"LuisMC"</title>
-       <link>https://luismc.es</link>
-       <description>Pagina web personal acerca de proyectos y demás trasteos</description>
        <item>
           <title>"Presentación de esta Web"</title>
           <link>"https://luismc.es/articulos/presentacion-de-esta-web"</link>
