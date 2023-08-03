@@ -2,67 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title>"LuisMC"</title>
-<link>https://luismc.es</link>
+<link>https://www.luismc.es</link>
 <description>Pagina web personal acerca de proyectos y demás trasteos</description>
 <atom:link href="https://luismc.es/feed.xml" rel="self" type="aplicación/rss+xml"/>
 <item>
 <title>"Instalación OpenMediaVault"</title>
-<guid>https://luismc.es/articulos/instalacion-openmediavault</guid>
-<link>https://luismc.es/articulos/instalacion-openmediavault</link>
+<guid>https://www.luismc.es/articulos/instalacion-openmediavault</guid>
+<link>https://www.luismc.es/articulos/instalacion-openmediavault</link>
 <description>"Instalación de Openmediavault. Sistema NAS libre y gratuito."</description>
 </item>
 <item>
 <title>"NodeJS sobre Debian"</title>
-<guid>https://luismc.es/articulos/node-js-sobre-debian</guid>
-<link>https://luismc.es/articulos/node-js-sobre-debian</link>
+<guid>https://www.luismc.es/articulos/node-js-sobre-debian</guid>
+<link>https://www.luismc.es/articulos/node-js-sobre-debian</link>
 <description>"Chuletita de instalación de nodejs para Sistemas Debian GNU/Linux."</description>
 </item>
 <item>
 <title>"Acerca de WordPress"</title>
-<guid>https://luismc.es/articulos/acerca-de-wordpress</guid>
-<link>https://luismc.es/articulos/acerca-de-wordpress</link>
+<guid>https://www.luismc.es/articulos/acerca-de-wordpress</guid>
+<link>https://www.luismc.es/articulos/acerca-de-wordpress</link>
 <description>"Que es wordpress, para que sirve, alternativas y opinión."</description>
 </item>
 <item>
 <title>"Docker: Procesos de instalación"</title>
-<guid>https://luismc.es/articulos/docker-procesos-de-instalacion</guid>
-<link>https://luismc.es/articulos/docker-procesos-de-instalacion</link>
+<guid>https://www.luismc.es/articulos/docker-procesos-de-instalacion</guid>
+<link>https://www.luismc.es/articulos/docker-procesos-de-instalacion</link>
 <description>"Pequeño articulo de instalación de Docker en los diferentes sistemas y\narquitecturas que utilizo."</description>
 </item>
 <item>
 <title>"GitLab: Raspberry Pi 4"</title>
-<guid>https://luismc.es/articulos/gitlab-raspberry-pi-4</guid>
-<link>https://luismc.es/articulos/gitlab-raspberry-pi-4</link>
+<guid>https://www.luismc.es/articulos/gitlab-raspberry-pi-4</guid>
+<link>https://www.luismc.es/articulos/gitlab-raspberry-pi-4</link>
 <description>"Articulo sobre la instalación de Gitlab en Raspberry Pi 4 con RaspberryPi OS,\neste ultimo sistema basado en Debian."</description>
 </item>
 <item>
 <title>"Git: Instalación y uso básico"</title>
-<guid>https://luismc.es/articulos/git-instalacion-y-uso-basico</guid>
-<link>https://luismc.es/articulos/git-instalacion-y-uso-basico</link>
+<guid>https://www.luismc.es/articulos/git-instalacion-y-uso-basico</guid>
+<link>https://www.luismc.es/articulos/git-instalacion-y-uso-basico</link>
 <description>"Articulo acerca de Git, otro invento de Linus Torvalds y de su uso básico."</description>
 </item>
 <item>
 <title>"Gitlab: ssh, keys rsa y gpg"</title>
-<guid>https://luismc.es/articulos/gitlab-ssh-keys-rsa-y-gpg</guid>
-<link>https://luismc.es/articulos/gitlab-ssh-keys-rsa-y-gpg</link>
+<guid>https://www.luismc.es/articulos/gitlab-ssh-keys-rsa-y-gpg</guid>
+<link>https://www.luismc.es/articulos/gitlab-ssh-keys-rsa-y-gpg</link>
 <description>"Articulo sobre la configuración basica de gitlab para trabajar mediante\ncertificados ssh y firmar tus commits"</description>
 </item>
 <item>
 <title>"Proxmox VE: Instalación"</title>
-<guid>https://luismc.es/articulos/proxmox-ve-instalacion</guid>
-<link>https://luismc.es/articulos/proxmox-ve-instalacion</link>
+<guid>https://www.luismc.es/articulos/proxmox-ve-instalacion</guid>
+<link>https://www.luismc.es/articulos/proxmox-ve-instalacion</link>
 <description>"Articulo sobre la instalación de Proxmox VE, un entorno de virtualización\nopensource."</description>
 </item>
 <item>
 <title>"GitLab CE: Instalación"</title>
-<guid>https://luismc.es/articulos/gitlab-ce-instalacion</guid>
-<link>https://luismc.es/articulos/gitlab-ce-instalacion</link>
+<guid>https://www.luismc.es/articulos/gitlab-ce-instalacion</guid>
+<link>https://www.luismc.es/articulos/gitlab-ce-instalacion</link>
 <description>"Articulo sobre las diferentes formas de instalacion de GitLab CE."</description>
 </item>
 <item>
 <title>"Presentación de esta Web"</title>
-<guid>https://luismc.es/articulos/presentacion-de-esta-web</guid>
-<link>https://luismc.es/articulos/presentacion-de-esta-web</link>
+<guid>https://www.luismc.es/articulos/presentacion-de-esta-web</guid>
+<link>https://www.luismc.es/articulos/presentacion-de-esta-web</link>
 <description>"Presentación de esta web como proyecto profesional y personal."</description>
 </item>
 </channel>
