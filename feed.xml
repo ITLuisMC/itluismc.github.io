@@ -4,7 +4,7 @@
 <title>"LuisMC"</title>
 <link>https://luismc.es</link>
 <description>Pagina web personal acerca de proyectos y demás trasteos</description>
-<atom:link href="https://luismc.es/feed.xml" rel="self" type="aplicación/rss+xml">
+<atom:link href="https://luismc.es/feed.xml" rel="self" type="aplicación/rss+xml"/>
 <item>
 <title>"Instalación OpenMediaVault"</title>
 <guid>https://luismc.es/articulos/instalacion-openmediavault</guid>
