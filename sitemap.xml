@@ -18,7 +18,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>
 	<url>
 	    <loc>/articulos/instalacion-openmediavault</loc>
-	    <lastmod>2023-07-09T12:08:40</lastmod>
+	    <lastmod>2025-02-26T22:14:23</lastmod>
 	    <changefreq>monthly</changefreq>
 	    <priority>1.0</priority>
 
@@ -26,7 +26,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>
 	<url>
 	    <loc>/articulos/node-js-sobre-debian</loc>
-	    <lastmod>2023-05-09T19:55:47</lastmod>
+	    <lastmod>2025-02-26T22:15:04</lastmod>
 	    <changefreq>monthly</changefreq>
 	    <priority>1.0</priority>
 
@@ -34,7 +34,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>
 	<url>
 	    <loc>/articulos/acerca-de-wordpress</loc>
-	    <lastmod>2023-05-09T19:57:10</lastmod>
+	    <lastmod>2025-02-26T22:16:33</lastmod>
 	    <changefreq>monthly</changefreq>
 	    <priority>1.0</priority>
 
@@ -50,7 +50,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>
 	<url>
 	    <loc>/articulos/gitlab-raspberry-pi-4</loc>
-	    <lastmod>2023-05-09T19:59:46</lastmod>
+	    <lastmod>2025-02-26T20:30:41</lastmod>
 	    <changefreq>monthly</changefreq>
 	    <priority>1.0</priority>
 
